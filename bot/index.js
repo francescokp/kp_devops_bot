@@ -1,9 +1,17 @@
+"use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
 
 var builder = require('botbuilder');
 var botbuilder_azure = require("botbuilder-azure");
 var settings = require("../settings");
+
+// import dialogs
+var defaultDialog = require("./dialogs/default");
+var globalDialog = require("./dialogs/global");
+var greetingsDialog = require("./dialogs/greetings");
+var testForm = require("./dialogs/formTest");
+
 
 console.log('settings -> ' + JSON.stringify(settings));
 // Create chat connector for communicating with the Bot Framework Service
@@ -22,28 +30,13 @@ const connector = new builder.ChatConnector({
 var azureTableClient = new botbuilder_azure.AzureTableClient(settings.tableName, process.env['AzureWebJobsStorage']);
 var tableStorage = new botbuilder_azure.AzureBotStorage({ gzipData: false }, azureTableClient);
 
-// Create your bot with a function to receive messages from the user
-var bot = new builder.UniversalBot(connector);
+// Create your bot with a function to receive messages from the user nad set a default dialog
+var bot = new builder.UniversalBot(connector, defaultDialog);
 // bot.set('storage', tableStorage);
 
-bot.dialog('/', [
-    function (session) {
-        builder.Prompts.text(session, "Hi... What's your name and surname?");
-    },
-    function (session, results) {
-        session.userData.name = results.response;
-        builder.Prompts.number(session, "Hi " + results.response + ", How many years have you been coding?"); 
-    },
-    function (session, results) {
-        session.userData.coding = results.response;
-        builder.Prompts.choice(session, "What language do you code Node using?", ["JavaScript", "CoffeeScript", "TypeScript"]);
-    },
-    function (session, results) {
-        session.userData.language = results.response.entity;
-        session.send("Got it... " + session.userData.name + 
-                    " you've been programming for " + session.userData.coding + 
-                    " years and use " + session.userData.language + ".");
-    }
-]);
+//Add Dialogs
+bot.library(globalDialog.clone());
+bot.library(greetingsDialog.clone());
+bot.library(testForm.clone());
 
 module.exports = connector;

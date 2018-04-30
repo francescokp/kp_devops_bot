@@ -3,6 +3,7 @@
 ## Release notes
 
 * *1.0.0 30/04/2018*
+  * Test dialogs by libs.
   * First Setup.
 
 ## Use Azure app service editor
