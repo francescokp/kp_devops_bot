@@ -6,7 +6,7 @@ var botbuilder_azure = require("botbuilder-azure");
 var settings = require("../settings");
 
 var storage;
-console.log('################# BotEnv is -> ' + process.env.BotEnv);
+
 if (process.env.BotEnv !== "prod") {
     console.log('Memory storage');
     storage = new botbuilder.MemoryBotStorage();
