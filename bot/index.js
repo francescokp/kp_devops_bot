@@ -19,8 +19,7 @@ const connector = new builder.ChatConnector({
 * For samples and documentation, see: https://github.com/Microsoft/BotBuilder-Azure
 * ---------------------------------------------------------------------------------------- */
 
-// var tableName = 'botdata';
-var azureTableClient = new botbuilder_azure.AzureTableClient(settings.t, process.env['AzureWebJobsStorage']);
+var azureTableClient = new botbuilder_azure.AzureTableClient(settings.tableName, process.env['AzureWebJobsStorage']);
 var tableStorage = new botbuilder_azure.AzureBotStorage({ gzipData: false }, azureTableClient);
 
 // Create your bot with a function to receive messages from the user
