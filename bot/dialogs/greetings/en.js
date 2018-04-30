@@ -6,7 +6,7 @@ var lang_en ={
             message: "Hi! I'm a Bot. Try demo by typing 'test dialog' or 'help' for more assistance."
         },
         hello: {
-            message: "Welcome back Guy!"
+            message: "Welcome back Guy! Type 'test dialog' or 'help' for more assistance."
         }
 };
 
