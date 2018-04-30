@@ -3,11 +3,13 @@ Object.defineProperty(exports, "__esModule", { value: true });
 
 var builder = require('botbuilder');
 var botbuilder_azure = require("botbuilder-azure");
+var settings = require("../settings");
 
+console.log('settings -> ' + JSON.stringify(settings));
 // Create chat connector for communicating with the Bot Framework Service
 const connector = new builder.ChatConnector({
-    appId: '3783f0c9-c99c-47da-b9e1-0c52aee20f29',//process.env.MicrosoftAppId,
-    appPassword: '38f]_UiQr-f+}Mlg',//process.env.MicrosoftAppPassword,
+    appId: settings.appId,
+    appPassword: settings.appPassword//,
     // openIdMetadata: process.env.BotOpenIdMetadata
 });
 
@@ -17,8 +19,8 @@ const connector = new builder.ChatConnector({
 * For samples and documentation, see: https://github.com/Microsoft/BotBuilder-Azure
 * ---------------------------------------------------------------------------------------- */
 
-var tableName = 'botdata';
-var azureTableClient = new botbuilder_azure.AzureTableClient(tableName, process.env['AzureWebJobsStorage']);
+// var tableName = 'botdata';
+var azureTableClient = new botbuilder_azure.AzureTableClient(settings.t, process.env['AzureWebJobsStorage']);
 var tableStorage = new botbuilder_azure.AzureBotStorage({ gzipData: false }, azureTableClient);
 
 // Create your bot with a function to receive messages from the user
@@ -27,7 +29,7 @@ var bot = new builder.UniversalBot(connector);
 
 bot.dialog('/', [
     function (session) {
-        builder.Prompts.text(session, "Hello... What's your name and surname?");
+        builder.Prompts.text(session, "Hi... What's your name and surname?");
     },
     function (session, results) {
         session.userData.name = results.response;

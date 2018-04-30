@@ -5,10 +5,12 @@ Object.defineProperty(exports, "__esModule", { value: true });
 
 var restify = require('restify');
 var connector = require("./bot");
+var settings = require("./settings");
 
 // Setup Restify Server
 var server = restify.createServer();
-server.listen(process.env.port || process.env.PORT || 3978, function () {
+console.log('port is ' + (process.env.port || process.env.PORT || settings.port));
+server.listen(settings.port, function () {
    console.log('%s listening to %s', server.name, server.url); 
 });
 
