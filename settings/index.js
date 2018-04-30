@@ -16,6 +16,7 @@ function normalizePort(val) {
 
 exports.appId = process.env.MICROSOFT_APP_ID || process.env.MicrosoftAppId;
 exports.appPassword = process.env.MICROSOFT_APP_PASSWORD || process.env.MicrosoftAppPassword;
+exports.BotOpenIdMetadata = process.env.BotOpenIdMetadata;
 exports.port = normalizePort(process.env.PORT || "3978");
 exports.tableName = process.env.TABLE_NAME || "botdata";
 exports.storageAccountName = process.env.STORAGE_ACCOUNT_NAME;

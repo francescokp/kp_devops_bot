@@ -18,8 +18,8 @@ console.log('settings -> ' + JSON.stringify(settings));
 // Create chat connector for communicating with the Bot Framework Service
 const connector = new builder.ChatConnector({
     appId: settings.appId,
-    appPassword: settings.appPassword//,
-    // openIdMetadata: process.env.BotOpenIdMetadata
+    appPassword: settings.appPassword,
+    openIdMetadata: settings.BotOpenIdMetadata
 });
 
 // Create your bot with a function to receive messages from the user nad set a default dialog
