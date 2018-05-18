@@ -10,13 +10,14 @@ var formLib = new botbuilder.Library("deployApp");
 formLib
     .dialog("deployApp", [
         function (session) {
-            var appName = results.response.enti;
             botbuilder.Prompts.choice(session, lang.welcome.intro, lang.welcome.apps, {
                 listStyle: botbuilder.ListStyle.button,
                 retryPrompt: lang.welcome.retry
             })
         },
         function (session, results) {
+            //memorizza appName per girarlo all'azione di deploy
+            var appName = results.response.entity;
             var msg = utils.format(lang.responseApp, appName);
             session.endDialog(msg);
         }])
