@@ -10,13 +10,19 @@ var formLib = new botbuilder.Library("formTest");
 formLib
     .dialog("testDialog", [
         function (session) {
+            //stampa il messaggio di welcome
             botbuilder.Prompts.text(session, lang.welcome);
         },
+        //prende in input la risposta al welcome (nome dell'utente)
         function (session, results) {
+            //memorizza la risposta in una variabile 
             session.userData.name = results.response;
+            //crea un messaggio inserendo nel template di risposta al nome il nome dell'utente (%s)
             var msg = utils.format(lang.responseName, results.response);
+            //stampa il messaggio di responseName e chiede un numero
             botbuilder.Prompts.number(session, msg);
         },
+        //prende in input la risposta al responseName (numero di anni)
         function (session, results) {
             session.userData.coding = results.response;
             botbuilder.Prompts.choice(session, lang.languageCode.intro, lang.languageCode.languages, {
