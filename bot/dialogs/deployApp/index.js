@@ -18,11 +18,7 @@ formLib
         function (session, results) {
             //memorizza appName per girarlo all'azione di deploy
             var appName = results.response.entity;
-            var msg = utils.format(lang.responseApp, appName);
-            //conferma app selezionata
-            //session.send(msg);
-        },
-        function (session) {
+            //var msg = utils.format(lang.responseApp, appName);
             botbuilder.Prompts.choice(session, lang.chooseEnv.intro, lang.chooseEnv.envs, {
                 listStyle: botbuilder.ListStyle.button,
                 retryPrompt: lang.chooseEnv.retry
@@ -31,13 +27,11 @@ formLib
         function (session, results) {
             //memorizza envName per girarlo all'azione di deploy
             var envName = results.response.entity;
-            var msg = utils.format(lang.responseEnv, envName);
-            //conferma env selezionato
-            //session.send(msg);
+            //var msg = utils.format(lang.responseEnv, envName);
         },
         function (session, results) {
             var envName = results.response.entity;
-            var msg = utils.format(lang.responseEnv, envName);
+            //var msg = utils.format(lang.responseEnv, envName);
             //session.send(msg);
             var endMsg = utils.format(lang.endMessage, appName, envName);
             session.endDialog(endMsg);
