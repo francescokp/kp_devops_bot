@@ -20,7 +20,7 @@ formLib
             var appName = results.response.entity;
             var msg = utils.format(lang.responseApp, appName);
             //conferma app selezionata
-            session.dialog(msg);
+            session.endDialog(msg);
         },
         function (session, results) {
             botbuilder.Prompts.choice(session, lang.chooseEnv.intro, lang.chooseEnv.envs, {
@@ -33,12 +33,12 @@ formLib
             var envName = results.response.entity;
             var msg = utils.format(lang.responseEnv, envName);
             //conferma env selezionato
-            session.dialog(msg);
+            session.endDialog(msg);
         },
         function (session, results) {
             var envName = results.response.entity;
             var msg = utils.format(lang.responseEnv, envName);
-            session.dialog(msg);
+            session.endDialog(msg);
             var endMsg = utils.format(lang.endMessage, appName, envName);
             session.endDialog(endMsg);
         }])
