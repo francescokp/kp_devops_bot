@@ -12,7 +12,7 @@ var lang_en = {
         languages:  ["JavaScript", "CoffeeScript", "TypeScript"],
         retry: "Sorry I didn’t understand. Please choose an option from the list by either entering the number or language name."
     },
-    finalMessage: "Got it... %s you've been programming for %s years and use %s."
+    finalMessage: "Got it! %s you've been programming for %s years and use %s."
 };
 
 module.exports = lang_en;
