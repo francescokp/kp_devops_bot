@@ -7,7 +7,7 @@ var lang_en = {
 
     welcome: {
         intro: "Which app would you like to deploy?",
-        apps: ["Proxy", "CippaLippa", "Vendor"],
+        apps: ["Proxy", "ServiceNow", "Vendor"],
         retry: "Sorry I didn’t understand. Please choose an app from the list by either entering the number or app name."
     },
     responseApp: "You chose app %s",
