@@ -11,6 +11,7 @@ var defaultDialog = require("./dialogs/default");
 var globalDialog = require("./dialogs/global");
 var greetingsDialog = require("./dialogs/greetings");
 var testForm = require("./dialogs/formTest");
+var deployApp = require("./dialogs/deployApp");
 
 
 console.log('settings -> ' + JSON.stringify(settings));
@@ -30,5 +31,6 @@ var bot = new builder.UniversalBot(connector, defaultDialog);
 bot.library(globalDialog.clone());
 bot.library(greetingsDialog.clone());
 bot.library(testForm.clone());
+bot.library(deployApp.clone());
 
 module.exports = connector;
