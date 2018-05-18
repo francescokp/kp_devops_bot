@@ -17,7 +17,7 @@ var lang_en = {
         retry: "Sorry I didn’t understand. Please choose an environment from the list by either entering the number or environment name."
     },
     responseEnv: "You chose environment %s",
-    endMessage: "App %s has been successfully deployed in environment %s",
+    endMessage: "App %s has been successfully deployed in environment %s."
 };
 
 module.exports = lang_en;
