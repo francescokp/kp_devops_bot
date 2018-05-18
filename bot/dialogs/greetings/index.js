@@ -32,7 +32,7 @@ greetingsLib
         session.endDialog(_lang.hello.message);
     })
     .triggerAction({
-        matches: /^hello$/i
+        matches: /.*/i
     });
 
 module.exports = greetingsLib;
