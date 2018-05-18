@@ -21,9 +21,8 @@ formLib
             var msg = utils.format(lang.responseApp, appName);
             //conferma app selezionata
             //session.send(msg);
-            botbuilder.Prompts.text(session, msg);
         },
-        function (session, results) {
+        function (session) {
             botbuilder.Prompts.choice(session, lang.chooseEnv.intro, lang.chooseEnv.envs, {
                 listStyle: botbuilder.ListStyle.button,
                 retryPrompt: lang.chooseEnv.retry
