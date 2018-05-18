@@ -18,6 +18,7 @@ formLib
         function (session, results) {
             var appName = results.response;
             var msg = utils.format(lang.responseApp, appName);
+            botbuilder.Prompts.number(session, msg);
         }])
     .triggerAction({
     matches: /^deploy app$/i
