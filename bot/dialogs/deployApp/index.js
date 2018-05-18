@@ -28,11 +28,6 @@ formLib
             //memorizza envName per girarlo all'azione di deploy
             var envName = results.response.entity;
             //var msg = utils.format(lang.responseEnv, envName);
-        },
-        function (session, results) {
-            var envName = results.response.entity;
-            //var msg = utils.format(lang.responseEnv, envName);
-            //session.send(msg);
             var endMsg = utils.format(lang.endMessage, appName, envName);
             session.endDialog(endMsg);
         }])
