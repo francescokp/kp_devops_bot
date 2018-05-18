@@ -19,7 +19,28 @@ formLib
             //memorizza appName per girarlo all'azione di deploy
             var appName = results.response.entity;
             var msg = utils.format(lang.responseApp, appName);
-            session.endDialog(msg);
+            //conferma app selezionata
+            session.dialog(msg);
+        },
+        function (session, results) {
+            botbuilder.Prompts.choice(session, lang.chooseEnv.intro, lang.chooseEnv.envs, {
+                listStyle: botbuilder.ListStyle.button,
+                retryPrompt: lang.chooseEnv.retry
+            })
+        },
+        function (session, results) {
+            //memorizza envName per girarlo all'azione di deploy
+            var envName = results.response.entity;
+            var msg = utils.format(lang.responseEnv, envName);
+            //conferma env selezionato
+            session.dialog(msg);
+        },
+        function (session, results) {
+            var envName = results.response.entity;
+            var msg = utils.format(lang.responseEnv, envName);
+            session.dialog(msg);
+            var endMsg = utils.format(lang.endMessage, appName, envName);
+            session.endDialog(endMsg);
         }])
     .triggerAction({
     matches: /^deploy app$/i
