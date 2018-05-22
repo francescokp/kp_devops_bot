@@ -34,7 +34,7 @@ formLib
             session.endDialog(endMsg);
         }])
     .triggerAction({
-    matches: /^deploy.*$/i
+    matches: /^deploy$/i
 });
 
 module.exports = formLib;
