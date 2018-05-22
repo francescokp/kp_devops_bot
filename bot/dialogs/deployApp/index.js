@@ -17,8 +17,8 @@ formLib
         },
         function (session, results) {
             //memorizza appName per girarlo all'azione di deploy
-            session.userData.name = results.response.entity;
-            var appToDeploy = results.response;
+            //session.userData.name = results.response.entity;
+            var appToDeploy = results.response.entity;
             session.say(appToDeploy + " is the app to deploy");
 
             botbuilder.Prompts.choice(session, lang.chooseEnv.intro, lang.chooseEnv.envs, {
