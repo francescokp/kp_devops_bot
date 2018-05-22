@@ -18,7 +18,9 @@ formLib
         function (session, results) {
             //memorizza appName per girarlo all'azione di deploy
             session.userData.name = results.response.entity;
-            //var msg = utils.format(lang.responseApp, appName);
+            var appToDeploy = results.response;
+            session.say(appToDeploy + " is the app to deploy");
+
             botbuilder.Prompts.choice(session, lang.chooseEnv.intro, lang.chooseEnv.envs, {
                 listStyle: botbuilder.ListStyle.button,
                 retryPrompt: lang.chooseEnv.retry
@@ -32,7 +34,7 @@ formLib
             session.endDialog(endMsg);
         }])
     .triggerAction({
-    matches: /^deploy app$/i
+    matches: /^deploy.*$/i
 });
 
 module.exports = formLib;
