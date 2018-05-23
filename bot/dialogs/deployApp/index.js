@@ -30,7 +30,7 @@ formLib
             //memorizza envName per girarlo all'azione di deploy
             var envName = results.response.entity;
             //var msg = utils.format(lang.responseEnv, envName);
-            var endMsg = utils.format(lang.endMessage, session.userData.name, envName);
+            var endMsg = utils.format(lang.endMessage, appToDeploy, envName);
             session.endDialog(endMsg);
         }])
     .triggerAction({
