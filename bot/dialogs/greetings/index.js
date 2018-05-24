@@ -18,7 +18,7 @@ greetingsLib
     .triggerAction({
         onFindAction: (context, callback) => {
             if (!userData.getFirstRun(context)) {
-                callback(null, 1.1);
+                callback(null, 0.0);
             } else {
                 callback(null, 0.0);
             }
@@ -28,13 +28,13 @@ greetingsLib
 greetingsLib
     .dialog("hello", session => {
         // Toggle user first run to show behaviour
-        userData.setFirstRun(session, false);
-        session.endDialog(_lang.hello.message);
+        userData.setFirstRun(session, true);
+        session.endDialog(_lang.firstRun.message);
     })
     .triggerAction({
-        matches: /^hello.*$/i,
-        matches: /^hi.*$/i,
-        matches: /^ciao.*$/i
+        //matches: /^hello.*$/i,
+        //matches: /^hi.*$/i,
+        matches: /^.*(ciao|hello|hi).*/
     });
 
 module.exports = greetingsLib;

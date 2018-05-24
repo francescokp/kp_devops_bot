@@ -18,14 +18,7 @@ globalDialog
           //  retryPrompt: lang.help.retry
         //})
 
-    },
-
-    function (session, results) {
-        var bah = results.response.entity;
-        //session.say("LOG "+bah);
-        session.endDialog("END DIALOG "+bah);
     }
-
     ])
     .triggerAction({
     matches: /^help$/i
