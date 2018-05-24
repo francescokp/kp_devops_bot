@@ -28,8 +28,8 @@ var bot = new builder.UniversalBot(connector, defaultDialog);
 // bot.set('storage', storage);
 
 //Add Dialogs
-bot.library(globalDialog.clone());
 bot.library(greetingsDialog.clone());
+bot.library(globalDialog.clone());
 bot.library(testForm.clone());
 bot.library(deployApp.clone());
 

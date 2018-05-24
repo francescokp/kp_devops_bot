@@ -5,11 +5,28 @@ var botbuilder = require("botbuilder");
 const lang = require("./en");
 
 var globalDialog = new botbuilder.Library("global");
+var funcChoise = "";
 
 globalDialog
-    .dialog("help", (session) => {
-    session.endDialog(lang.help.message);
-})
+    .dialog("help", [
+    //session.endDialog(lang.help.message);
+
+    function (session) {
+        botbuilder.Prompts.text(session, lang.help.intro);
+        //botbuilder.Prompts.choice(session, lang.help.intro, lang.help.actions, {
+          //  listStyle: botbuilder.ListStyle.button,
+          //  retryPrompt: lang.help.retry
+        //})
+
+    },
+
+    function (session, results) {
+        var bah = results.response.entity;
+        //session.say("LOG "+bah);
+        session.endDialog("END DIALOG "+bah);
+    }
+
+    ])
     .triggerAction({
     matches: /^help$/i
 });
