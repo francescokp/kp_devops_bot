@@ -27,7 +27,7 @@ greetingsLib
 
 greetingsLib
     .dialog("hello", session => {
-        // Toggle user first run to show behaviour
+        // Toggle user first run to show behaviour t
         userData.setFirstRun(session, true);
         session.endDialog(_lang.firstRun.message);
     })

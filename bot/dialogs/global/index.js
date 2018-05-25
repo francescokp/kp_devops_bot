@@ -9,7 +9,7 @@ var funcChoise = "";
 
 globalDialog
     .dialog("help", [
-    //session.endDialog(lang.help.message);
+    //session.endDialog(lang.help.message); t
 
     function (session) {
         botbuilder.Prompts.text(session, lang.help.intro);
