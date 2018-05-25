@@ -43,7 +43,7 @@ formLib
     )
     .triggerAction({
     //matches: /^deploy$/i
-    matches: /^.*deploy.*/
+    matches: /^.*deploy.*/i
 });
 
 module.exports = formLib;
