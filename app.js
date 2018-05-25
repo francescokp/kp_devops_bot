@@ -15,4 +15,5 @@ server.listen(settings.port, function () {
 });
 
 // Listen for messages from users 
+// istanzia il connector definito nella folder bot
 server.post('/api/messages', connector.listen());

@@ -40,6 +40,13 @@ formLib
         }])
     .triggerAction({
     matches: /^test dialog$/i
-});
+    })
+    .endConversationAction(
+    "annullaDeploy", "Ok. Ciaone.",
+    {
+        matches: /^cancel.*$|^annull.*$/i,
+        confirmPrompt: "This will cancel the deploy. Are you sure?"
+    }
+    );
 
 module.exports = formLib;

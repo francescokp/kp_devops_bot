@@ -5,30 +5,41 @@ var botbuilder = require("botbuilder");
 const lang = require("./en");
 
 var globalDialog = new botbuilder.Library("global");
-var funcChoise = "";
+
+var menuActions = {
+    "Deploy BW6": {
+        //nomelibrary:nomedialog
+        item: "deployApp:deployApp"
+    },
+    "Deploy TCI": {
+        item: "deploytci"
+    },
+    "Create GitHub Repository": {
+        item: "createrepo"
+    },
+}
 
 globalDialog
     .dialog("help", [
     //session.endDialog(lang.help.message);
 
     function (session) {
-        botbuilder.Prompts.text(session, lang.help.intro);
-        //botbuilder.Prompts.choice(session, lang.help.intro, lang.help.actions, {
-          //  listStyle: botbuilder.ListStyle.button,
-          //  retryPrompt: lang.help.retry
-        //})
+        //botbuilder.Prompts.text(session, lang.help.intro);
+        botbuilder.Prompts.choice(session, lang.help.intro, menuActions, {
+            listStyle: botbuilder.ListStyle.button,
+            retryPrompt: lang.help.retry
+        })
 
     },
 
     function (session, results) {
-        var bah = results.response.entity;
-        //session.say("LOG "+bah);
-        session.endDialog("END DIALOG "+bah);
+        var chosenAction = results.response.entity;
+        session.endDialog("You have selected: " + chosenAction);
+        session.beginDialog(menuActions[chosenAction].item);
     }
-
     ])
     .triggerAction({
-    matches: /^help$/i
+    matches: /^help.*$/i
 });
 
 module.exports = globalDialog;
