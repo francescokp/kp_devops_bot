@@ -38,7 +38,7 @@ greetingsLib
         session.endDialog(_lang.firstRun.message);
     })
     .triggerAction({
-        matches: /^.*hello.*|^.*hi.*|^.*ciao.*/
+        matches: /^.*hello.*|^.*hi.*|^.*ciao.*/i
         //matches: /^hi.*$/i
     });
 
