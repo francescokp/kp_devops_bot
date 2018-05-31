@@ -6,8 +6,8 @@ Object.defineProperty(exports, "__esModule", {
 var lang_en = {
 
     welcome: {
-        intro: "These are the available BW6 applications that can be deployed",
-        apps: ["AccountingDocument", "Bank", "BillOfMaterial", "CommonSAPListener", "CommonSAPResources", "CommonWMSResources", "Conai", "Customer", "Delivery", "DeployTest", "GoodsMovement", "GoodsReceipt", "InternalOrders", "Invoice", "LiquidMovement", "LogisticsOperators", "Material", "MaterialClassification", "MyNewFantasticApp", "Order", "PickList", "ProductionOrder", "PurchaseOrder", "SAPListener", "SalesOrder", "SignatureManager", "Stocks", "Vendor"],
+        intro: "These are the available TCI applications that can be deployed",
+        apps: ["AccountingDocument", "CommonUtils", "DeployTest", "EmployeeCentral", "JournalEntries", "LogProvider", "LogisticsOperators", "Material", "PickList", "Proxy", "PurchaseOrder", "ServiceNow", "Vendor"],
         retry: "Sorry I didn’t understand. Please choose an app from the list"
     },
     confirmApp: "Ok. *%s* is the app to deploy",
