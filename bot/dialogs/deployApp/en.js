@@ -17,11 +17,14 @@ var lang_en = {
         retry: "Sorry I didn’t understand. Please choose an environment from the list by either entering the number or environment name."
     },
     confirmEnv: "You chose environment %s",
+    insertVersion: "Please specify which version of the app you want to deploy",
     insertUsername: "Please insert your Active Directory username",
     confirmUser: "Your username is %s",
     insertPassword: "Please insert your Active Directory password",
     wrongCredentials: "Your credentials seem to be invalid",
     confirmDeploy: "Ok. I'm going to start *%s* deploy in %s environment \n\n ..Please wait a few seconds..",
+    confirmDeployPROD: "Ok. I'm going to start *%s* deploy, version %s in %s environment \n\n ..Please wait a few seconds..",
+    deployErrorMessage: "Oooops... something went wrong. Please don't panic and contact the support before retrying.",
     endMessage: "Deploy for app %s has been successfully started in %s environment. Please check your application logs."
 };
 

@@ -36,24 +36,35 @@ formLib
             //messaggio di conferma dell'env selezionato
             var confirmEnv = utils.format(lang.confirmEnv, session.conversationData.envName);
             session.say(confirmEnv);
+            //se l'env è PROD richiede anche la versione dell'app da deployare
+            if (session.conversationData.envName == "PROD") {
+                session.beginDialog("insertVersion");
+            }
             //inizia il dialogo di check credenziali
             session.beginDialog("checkCredentials");
         },
         function (session, results) {
-            var confirmDeploy = utils.format(lang.confirmDeploy, session.conversationData.appToDeploy, session.conversationData.envName);
-            session.say(confirmDeploy);
+            if (session.conversationData.envName == "QAS") {
+                var confirmDeploy = utils.format(lang.confirmDeploy, session.conversationData.appToDeploy, session.conversationData.envName);
+                session.say(confirmDeploy);
+            } else {
+                var confirmDeployProd = utils.format(lang.confirmDeployPROD, session.conversationData.appToDeploy, session.conversationData.appVersion, session.conversationData.envName);
+                session.say(confirmDeployProd);
+            }
             //chiamata POST: dati utente, framework BW6 hardcoded, env e app presi dall'input del bot
-            poster(session.conversationData.username, session.conversationData.password, 'BW6', session.conversationData.envName, session.conversationData.appToDeploy);
-            
-            setTimeout(function () {
+            var exitCode = poster(session.conversationData.username, session.conversationData.password, 'BW6', session.conversationData.envName, session.conversationData.appToDeploy, session.conversationData.appVersion);
+
+            if (exitCode != 0) {
+                session.say(lang.deployErrorMessage);
+            } else {
                 var endMessage = utils.format(lang.endMessage, session.conversationData.appToDeploy, session.conversationData.envName);
                 session.say(endMessage);
                 //session.userData.TimeoutStarted = false;
-            }, 5000);
+            };
         }]
     )
     .endConversationAction(
-    "annullaDeploy", "Ok. Ciaone.",
+    "annullaDeploy", "OK BYE NOW.",
     {
         matches: /^cancel.*$|^annull.*$/i,
         confirmPrompt: "This will cancel the deploy. Are you sure?"
@@ -89,10 +100,30 @@ formLib
             }
         }])
         .endConversationAction(
-            "annullaDeploy", "Ok. Ciaone.",
+            "annullaDeploy", "OK BYE NOW.",
             {
                 matches: /^cancel.*$|^annull.*$/i,
                 confirmPrompt: "This will cancel the deploy. Are you sure?"
             });
+
+formLib
+    .dialog("insertVersion", [
+        function (session) {
+            //richiede la versione
+            botbuilder.Prompts.text(session, lang.insertVersion);
+        },
+        function (session, results) {
+            //memorizza la versione
+            session.conversationData.appVersion = results.response;
+            //restituisce la versione al dialogo chiamante
+            session.endDialogWithResult(results);
+        }
+        ])
+    .endConversationAction(
+        "annullaDeploy", "OK BYE NOW.",
+        {
+            matches: /^cancel.*$|^annull.*$/i,
+            confirmPrompt: "This will cancel the deploy. Are you sure?"
+    });
 
 module.exports = formLib;
