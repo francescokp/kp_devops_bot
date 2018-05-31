@@ -7,17 +7,22 @@ var lang_en = {
 
     welcome: {
         intro: "These are the available BW6 applications that can be deployed",
-        apps: ["LogisticsOperators", "Material", "Vendor","Stock", "BillOfMaterial", "PurchaseOrder"],
+        apps: ["DeployTest", "LogisticsOperators", "Material", "Vendor","Stock", "BillOfMaterial", "PurchaseOrder"],
         retry: "Sorry I didn’t understand. Please choose an app from the list"
     },
-    responseApp: "You chose app %s",
+    confirmApp: "Ok. *%s* is the app to deploy",
     chooseEnv: {
         intro: "Which is the target environment?",
         envs: ["QAS", "PROD"],
         retry: "Sorry I didn’t understand. Please choose an environment from the list by either entering the number or environment name."
     },
-    responseEnv: "You chose environment %s",
-    endMessage: "App %s has been successfully deployed in %s environment"
+    confirmEnv: "You chose environment %s",
+    insertUsername: "Please insert your Active Directory username",
+    confirmUser: "Your username is %s",
+    insertPassword: "Please insert your Active Directory password",
+    wrongCredentials: "Your credentials seem to be invalid",
+    confirmDeploy: "Ok. I'm going to start *%s* deploy in %s environment \n\n ..Please wait a few seconds..",
+    endMessage: "Deploy for app %s has been successfully started in %s environment. Please check your application logs."
 };
 
 module.exports = lang_en;

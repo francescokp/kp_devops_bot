@@ -1,0 +1,13 @@
+{
+  "ExpandedNodes": [
+    "",
+    "\\bot",
+    "\\bot\\dialogs",
+    "\\bot\\dialogs\\deployApp",
+    "\\bot\\dialogs\\formTest",
+    "\\bot\\dialogs\\greetings",
+    "\\bot\\logic"
+  ],
+  "SelectedNode": "\\bot\\logic\\post.js",
+  "PreviewInSolutionExplorer": false
+}
