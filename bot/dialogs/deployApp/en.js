@@ -24,7 +24,7 @@ var lang_en = {
     wrongCredentials: "Your credentials seem to be invalid",
     confirmDeploy: "Ok. I'm going to start *%s* deploy in %s environment \n\n ..Please wait a few seconds..",
     confirmDeployPROD: "Ok. I'm going to start *%s* deploy, version %s in %s environment \n\n ..Please wait a few seconds..",
-    deployErrorMessage: "Oooops... something went wrong. Please don't panic and contact the support before retrying.",
+    deployErrorMessage: "Oooops... something went wrong. Please don't panic and contact the support before retrying. Error code: %s",
     endMessage: "Deploy for app %s has been successfully started in %s environment. Please check your application logs."
 };
 

@@ -1,17 +1,16 @@
 var postRequest = require('request');
 
-var exitCode = 1;
-
-function prepareRequest(username, password, framework, env, appName, appVersion) {
+function prepareRequest(username, password, framework, env, appName, appVersion, callback) {
     // Converte l'environment in "formato Jenkins"
     if (env == 'QAS') {
         env = 'TEST';
     }
 
     // Set the headers
+    var authString = username + ":" + password;
+    var authEncoded = Buffer.from(authString).toString('base64');
     var headers = {
-        // al momento utilizza la mia utenza -Fra
-        'Authorization': 'Basic OTkwMDU1MDU6U2FuZC01NTA1',
+        'Authorization': 'Basic ' + authEncoded,
         //'Content-Type': 'application/x-www-form-urlencoded'
     }
 
@@ -37,15 +36,16 @@ function prepareRequest(username, password, framework, env, appName, appVersion)
     }
 
     // Start the request
+    var res = '';
     postRequest(options, function (error, response, body) {
-        if (!error && response.statusCode == 200) {
-            // Print out the response body
-            console.log(body)
-            exitCode = 0;
+        if (!error && response.statusCode == 201) {
+            res = "started";
         }
-    })
-
-    return exitCode;
+        else {
+            res = response.statusCode;
+        }
+        callback(res);
+    });
 }
 
 module.exports = prepareRequest;

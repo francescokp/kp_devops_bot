@@ -3,11 +3,14 @@
     "",
     "\\bot",
     "\\bot\\dialogs",
+    "\\bot\\dialogs\\default",
     "\\bot\\dialogs\\deployApp",
+    "\\bot\\dialogs\\deployTci",
     "\\bot\\dialogs\\formTest",
+    "\\bot\\dialogs\\global",
     "\\bot\\dialogs\\greetings",
     "\\bot\\logic"
   ],
-  "SelectedNode": "\\bot\\logic\\post.js",
+  "SelectedNode": "\\bot\\logic\\Authenticate.js",
   "PreviewInSolutionExplorer": false
 }

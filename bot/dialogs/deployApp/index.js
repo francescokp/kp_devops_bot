@@ -52,15 +52,16 @@ formLib
                 session.say(confirmDeployProd);
             }
             //chiamata POST: dati utente, framework BW6 hardcoded, env e app presi dall'input del bot
-            var exitCode = poster(session.conversationData.username, session.conversationData.password, 'BW6', session.conversationData.envName, session.conversationData.appToDeploy, session.conversationData.appVersion);
-
-            if (exitCode != 0) {
-                session.say(lang.deployErrorMessage);
-            } else {
-                var endMessage = utils.format(lang.endMessage, session.conversationData.appToDeploy, session.conversationData.envName);
-                session.say(endMessage);
-                //session.userData.TimeoutStarted = false;
-            };
+            poster(session.conversationData.username, session.conversationData.password, 'BW6', session.conversationData.envName, session.conversationData.appToDeploy, session.conversationData.appVersion, function (resp) {
+                console.log(resp);
+                if (resp != "started") {
+                    var errorMessage = utils.format(lang.deployErrorMessage, resp);
+                    session.say(errorMessage);
+                } else {
+                    var endMessage = utils.format(lang.endMessage, session.conversationData.appToDeploy, session.conversationData.envName);
+                    session.say(endMessage);
+                }
+            });
         }]
     )
     .endConversationAction(
@@ -87,17 +88,18 @@ formLib
         },
         function (session, results) {
 
-            var exitCode = authenticator(session.conversationData.username, results.response)
-
-            if (exitCode != 0) {
-                session.say(lang.wrongCredentials);
-                session.replaceDialog('checkCredentials', { reprompt: true });
-            }
-            else {
-                //memorizza password per girarla all'azione di deploy
-                session.conversationData.password = results.response;
-                session.endDialogWithResult(results);
-            }
+            authenticator(session.conversationData.username, results.response, function (resp) {
+                console.log(resp);
+                if (resp != "Login successful") {
+                    session.say(lang.wrongCredentials);
+                    session.replaceDialog('checkCredentials', { reprompt: true });
+                    session.endDialog;
+                } else {
+                    //memorizza password per girarla all'azione di deploy
+                    session.conversationData.password = results.response;
+                    session.endDialogWithResult(results);
+                }
+            });
         }])
         .endConversationAction(
             "annullaDeploy", "OK BYE NOW.",

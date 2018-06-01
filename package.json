@@ -11,10 +11,12 @@
   "dependencies": {
     "botbuilder": "^3.13.1",
     "botbuilder-azure": "^3.0.4",
-    "restify": "^5.0.0"
+    "request-promise": "^4.2.2",
+    "restify": "^5.0.0",
+    "sync-request": "^6.0.0"
   },
   "devDependencies": {
-    "request": "^2.81.0",
+    "request": "^2.87.0",
     "zip-folder": "^1.0.0"
   }
 }

@@ -1,34 +1,29 @@
-var postRequest = require('request');
+var getRequest = require('request');
 
-var exitCode = 1;
-
-function loginRequest(username, password) {
-
+function loginRequest(username, password, callback) {
 
     // Set the headers
     var authString = username + ":" + password;
     var authEncoded = Buffer.from(authString).toString('base64');
-    var headers = {
-        'Authorization': authEncoded,
-        //'Content-Type': 'application/x-www-form-urlencoded'
-    }
-
-    // Configure the request
     var options = {
-        url: 'https://eu-west-1.integration.cloud.tibcoapps.com/j2pwq5djvlle5xdskw4ba3r2chy53byg/checkCredentials/checkcredentials',
+        uri: 'https://eu-west-1.integration.cloud.tibcoapps.com/j2pwq5djvlle5xdskw4ba3r2chy53byg/checkCredentials/checkcredentials',
         method: 'GET',
-        headers: headers,
-        form: { }
-    }
-
-    // Start the request
-    postRequest(options, function (error, response, body) {
-        if (response.body == "Login successful") {
-            exitCode = 0;
+        headers: {
+            'Authorization': 'Basic ' + authEncoded,
+            //'Content-Type': 'application/x-www-form-urlencoded'
         }
-    })
+    };
 
-    return exitCode;
+    var res = '';
+    getRequest(options, function (error, response, body) {
+        if (!error && response.statusCode == 200) {
+            res = body;
+        }
+        else {
+            res = response.statusCode;
+        }
+        callback(res);
+    });
 }
 
 module.exports = loginRequest;
