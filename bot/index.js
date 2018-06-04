@@ -14,6 +14,7 @@ var loginDialog = require("./dialogs/login");
 var testForm = require("./dialogs/formTest");
 var deployApp = require("./dialogs/deployApp");
 var deployTci = require("./dialogs/deployTci");
+var createRepo = require("./dialogs/createRepo");
 
 
 console.log('settings -> ' + JSON.stringify(settings));
@@ -36,5 +37,6 @@ bot.library(testForm.clone());
 bot.library(deployApp.clone());
 bot.library(deployTci.clone());
 bot.library(loginDialog.clone());
+bot.library(createRepo.clone());
 
 module.exports = connector;
