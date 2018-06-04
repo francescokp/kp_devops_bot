@@ -30,7 +30,8 @@ var lang_en = {
     cancelDeploy: "The deploy was cancelled",
     confirmDeploy: "The deploy was started. \n\n ..Please wait a few seconds..",
     deployErrorMessage: "Oooops... something went wrong. Please don't panic and contact the support before retrying. Error code: %s",
-    endMessage: "Deploy for app %s has been successfully started in %s environment. Please check your application logs."
+    endMessage: "Deploy for app %s has been successfully started in %s environment. Please check your application logs.",
+    yesNo: ["YES", "NO"]
 };
 
 module.exports = lang_en;

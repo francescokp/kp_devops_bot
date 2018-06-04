@@ -47,12 +47,14 @@ formLib
                 //se connosce già l'utente chiede conferma sull'utenza loggata
                 var confirmUser = utils.format(lang.loginBypass, session.userData.username);
                 session.say(confirmUser);
-                botbuilder.Prompts.confirm(session, lang.keepLogin);
+                botbuilder.Prompts.choice(session, lang.keepLogin, lang.yesNo, {
+                    listStyle: botbuilder.ListStyle.button
+                });
             }
         },
-        function(session, args, next) {
+        function(session, results, next) {
             // se l'utente vuole cambiare utenza parte il dialogo di login
-            if (!args.response) {
+            if (results.response.entity == "NO") {
                 session.beginDialog("checkCredentials");
             } else {
                 next();
@@ -62,17 +64,21 @@ formLib
             //chiede l'ultima conferma del deploy
             if (session.conversationData.envName == "QAS") {
                 var startDeploy = utils.format(lang.startDeploy, session.conversationData.appToDeploy, session.conversationData.envName);
-                botbuilder.Prompts.confirm(session, startDeploy);
+                botbuilder.Prompts.choice(session, startDeploy, lang.yesNo, {
+                    listStyle: botbuilder.ListStyle.button
+                });
             } else {
                 var startDeployProd = utils.format(lang.startDeployProd, session.conversationData.appToDeploy, session.conversationData.appVersion, session.conversationData.envName);
-                botbuilder.Prompts.confirm(session, startDeployProd);
+                botbuilder.Prompts.choice(session, startDeployProd, lang.yesNo, {
+                    listStyle: botbuilder.ListStyle.button
+                });
             }
         },
-        function(session, args, results) {
-            if (args.response) {
+        function(session, results) {
+            if (results.response.entity == "YES") {
                 session.say(lang.confirmDeploy);
-                //chiamata POST: dati utente, framework BW6 hardcoded, env e app presi dall'input del bot
-                poster(session.userData.username, session.userData.password, 'BW6', session.conversationData.envName, session.conversationData.appToDeploy, session.conversationData.appVersion, function(resp) {
+                //chiamata POST: dati utente, env e app presi dall'input del bot
+                poster(session.userData.username, session.userData.password, session.conversationData.envName, session.conversationData.appToDeploy, session.conversationData.appVersion, function(resp) {
                     console.log(resp);
                     if (resp != "started") {
                         var errorMessage = utils.format(lang.deployErrorMessage, resp);

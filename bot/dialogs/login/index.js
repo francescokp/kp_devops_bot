@@ -51,6 +51,17 @@ loginDialog
         {
             matches: /^cancel.*$|^annull.*$/i,
             confirmPrompt: "This will cancel the login. Are you sure?"
-        });;
+        }
+    );
+
+loginDialog
+    .dialog("logout", function(session) {
+        //sbianca nome e pwd dell'utente
+        session.userData.username = null;
+        session.userData.password = null;
+    })
+    .triggerAction({
+        matches: /^logout$/i
+    });
 
 module.exports = loginDialog;

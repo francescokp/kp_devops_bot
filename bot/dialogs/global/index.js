@@ -12,7 +12,7 @@ var menuActions = {
         item: "deployApp:deployApp"
     },
     "Deploy TCI": {
-        item: "deploytci"
+        item: "deployTci:deployTci"
     },
     "Create GitHub Repository": {
         item: "createrepo"

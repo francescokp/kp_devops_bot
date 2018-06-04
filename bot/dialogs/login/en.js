@@ -6,6 +6,6 @@ var lang_en ={
     confirmUser: "Your username is %s",
     insertPassword: "Please insert your Active Directory password",
     wrongCredentials: "Your credentials seem to be invalid",
-    loginConfirm: "Login successful",};
+    loginConfirm: "Login successful. Type 'help' for a list of possible actions",};
 
 module.exports = lang_en;
