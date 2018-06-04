@@ -59,6 +59,7 @@ loginDialog
         //sbianca nome e pwd dell'utente
         session.userData.username = null;
         session.userData.password = null;
+        session.say(lang.logoutConfirm);
     })
     .triggerAction({
         matches: /^logout$/i
