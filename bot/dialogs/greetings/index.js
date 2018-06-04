@@ -16,7 +16,7 @@ greetingsLib
             var welcomeBack = utils.format(lang.welcomeBack, session.userData.username);
             session.endDialog(welcomeBack);
         } else {
-            session.endDialog(lang.firstRun.message);
+            session.endDialog(lang.firstRun);
         }
 
     })

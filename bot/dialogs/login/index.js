@@ -45,6 +45,12 @@ loginDialog
         }])
     .triggerAction({
         matches: /^login$/i
-    });
+    })
+    .endConversationAction(
+        "annullaLogin", "Login cancelled",
+        {
+            matches: /^cancel.*$|^annull.*$/i,
+            confirmPrompt: "This will cancel the login. Are you sure?"
+        });;
 
 module.exports = loginDialog;
