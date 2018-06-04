@@ -13,7 +13,7 @@ var lang_en = {
     confirmApp: "Ok. *%s* is the app to deploy",
     chooseEnv: {
         intro: "Which is the target environment?",
-        envs: ["QAS", "PROD"],
+        envs: ["QAS"/*, "PROD"*/],
         retry: "Sorry I didn’t understand. Please choose an environment from the list by either entering the number or environment name."
     },
     confirmEnv: "You chose environment %s",
@@ -22,8 +22,13 @@ var lang_en = {
     confirmUser: "Your username is %s",
     insertPassword: "Please insert your Active Directory password",
     wrongCredentials: "Your credentials seem to be invalid",
-    confirmDeploy: "Ok. I'm going to start *%s* deploy in %s environment \n\n ..Please wait a few seconds..",
-    confirmDeployPROD: "Ok. I'm going to start *%s* deploy, version %s in %s environment \n\n ..Please wait a few seconds..",
+    loginConfirm: "Login successful",
+    loginBypass: "You are currently logged in as %s",
+    keepLogin: "Is this the correct user?",
+    startDeploy: "Are you sure you want to deploy *%s* in %s environment?",
+    startDeployProd: "Are you sure you want to deploy *%s*, version %s, in %s environment?",
+    cancelDeploy: "The deploy was cancelled",
+    confirmDeploy: "The deploy was started. \n\n ..Please wait a few seconds..",
     deployErrorMessage: "Oooops... something went wrong. Please don't panic and contact the support before retrying. Error code: %s",
     endMessage: "Deploy for app %s has been successfully started in %s environment. Please check your application logs."
 };

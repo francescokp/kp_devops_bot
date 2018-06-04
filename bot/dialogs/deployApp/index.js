@@ -11,14 +11,14 @@ var formLib = new botbuilder.Library("deployApp");
 
 formLib
     .dialog("deployApp", [
-        function (session) {
+        function(session) {
 
             botbuilder.Prompts.choice(session, lang.welcome.intro, lang.welcome.apps, {
                 listStyle: botbuilder.ListStyle.button,
                 retryPrompt: lang.welcome.retry
             })
         },
-        function (session, results) {
+        function(session, results) {
             //memorizza appName per girarlo all'azione di deploy
             session.conversationData.appToDeploy = results.response.entity;
             //messaggio di conferma dell'App selezionata
@@ -30,7 +30,7 @@ formLib
                 retryPrompt: lang.chooseEnv.retry
             })
         },
-        function (session, results) {
+        function(session, results) {
             //memorizza envName per girarlo all'azione di deploy
             session.conversationData.envName = results.response.entity;
             //messaggio di conferma dell'env selezionato
@@ -40,28 +40,53 @@ formLib
             if (session.conversationData.envName == "PROD") {
                 session.beginDialog("insertVersion");
             }
-            //inizia il dialogo di check credenziali
-            session.beginDialog("checkCredentials");
-        },
-        function (session, results) {
-            if (session.conversationData.envName == "QAS") {
-                var confirmDeploy = utils.format(lang.confirmDeploy, session.conversationData.appToDeploy, session.conversationData.envName);
-                session.say(confirmDeploy);
+            //inizia il dialogo di check credenziali se non conosce già l'utente
+            if (session.userData.username == null) {
+                session.beginDialog("checkCredentials");
             } else {
-                var confirmDeployProd = utils.format(lang.confirmDeployPROD, session.conversationData.appToDeploy, session.conversationData.appVersion, session.conversationData.envName);
-                session.say(confirmDeployProd);
+                //se connosce già l'utente chiede conferma sull'utenza loggata
+                var confirmUser = utils.format(lang.loginBypass, session.userData.username);
+                session.say(confirmUser);
+                botbuilder.Prompts.confirm(session, lang.keepLogin);
             }
-            //chiamata POST: dati utente, framework BW6 hardcoded, env e app presi dall'input del bot
-            poster(session.conversationData.username, session.conversationData.password, 'BW6', session.conversationData.envName, session.conversationData.appToDeploy, session.conversationData.appVersion, function (resp) {
-                console.log(resp);
-                if (resp != "started") {
-                    var errorMessage = utils.format(lang.deployErrorMessage, resp);
-                    session.say(errorMessage);
-                } else {
-                    var endMessage = utils.format(lang.endMessage, session.conversationData.appToDeploy, session.conversationData.envName);
-                    session.say(endMessage);
-                }
-            });
+        },
+        function(session, args, next) {
+            // se l'utente vuole cambiare utenza parte il dialogo di login
+            if (!args.response) {
+                session.beginDialog("checkCredentials");
+            } else {
+                next();
+            }
+        },
+        function(session, results) {
+            //chiede l'ultima conferma del deploy
+            if (session.conversationData.envName == "QAS") {
+                var startDeploy = utils.format(lang.startDeploy, session.conversationData.appToDeploy, session.conversationData.envName);
+                botbuilder.Prompts.confirm(session, startDeploy);
+            } else {
+                var startDeployProd = utils.format(lang.startDeployProd, session.conversationData.appToDeploy, session.conversationData.appVersion, session.conversationData.envName);
+                botbuilder.Prompts.confirm(session, startDeployProd);
+            }
+        },
+        function(session, args, results) {
+            if (args.response) {
+                session.say(lang.confirmDeploy);
+                //chiamata POST: dati utente, framework BW6 hardcoded, env e app presi dall'input del bot
+                poster(session.userData.username, session.userData.password, 'BW6', session.conversationData.envName, session.conversationData.appToDeploy, session.conversationData.appVersion, function(resp) {
+                    console.log(resp);
+                    if (resp != "started") {
+                        var errorMessage = utils.format(lang.deployErrorMessage, resp);
+                        session.say(errorMessage);
+                    } else {
+                        var endMessage = utils.format(lang.endMessage, session.conversationData.appToDeploy, session.conversationData.envName);
+                        session.say(endMessage);
+                    }
+                });
+            } else {
+                session.say(lang.cancelDeploy);
+                session.endConversation;
+            }
+
         }]
     )
     .endConversationAction(
@@ -97,6 +122,12 @@ formLib
                 } else {
                     //memorizza password per girarla all'azione di deploy
                     session.conversationData.password = results.response;
+                    //memorizza nome e pwd dell'utente in sessione
+                    session.userData.username = session.conversationData.username;
+                    session.userData.password = session.conversationData.password;
+                    //conferma login
+                    session.say(lang.loginConfirm);
+                    //torna al dialogo padre
                     session.endDialogWithResult(results);
                 }
             });

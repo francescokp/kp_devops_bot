@@ -39,7 +39,7 @@ globalDialog
     }
     ])
     .triggerAction({
-    matches: /^help.*$/i
+    matches: /^.*help.*$/i
 });
 
 module.exports = globalDialog;

@@ -10,6 +10,7 @@ var settings = require("../settings");
 var defaultDialog = require("./dialogs/default");
 var globalDialog = require("./dialogs/global");
 var greetingsDialog = require("./dialogs/greetings");
+var loginDialog = require("./dialogs/login");
 var testForm = require("./dialogs/formTest");
 var deployApp = require("./dialogs/deployApp");
 
@@ -32,5 +33,6 @@ bot.library(greetingsDialog.clone());
 bot.library(globalDialog.clone());
 bot.library(testForm.clone());
 bot.library(deployApp.clone());
+bot.library(loginDialog.clone());
 
 module.exports = connector;
