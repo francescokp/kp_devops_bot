@@ -81,11 +81,13 @@ formLib
                 poster(session.userData.username, session.userData.password, session.conversationData.envName, session.conversationData.appToDeploy, session.conversationData.appVersion, function(resp) {
                     console.log(resp);
                     if (resp != "started") {
-                        var errorMessage = utils.format(lang.deployErrorMessage, resp);
+                        var errorMessage = utils.format(lang.errorMessage, resp);
                         session.say(errorMessage);
+                        session.endConversation;
                     } else {
                         var endMessage = utils.format(lang.endMessage, session.conversationData.appToDeploy, session.conversationData.envName);
                         session.say(endMessage);
+                        session.endConversation;
                     }
                 });
             } else {
@@ -122,9 +124,15 @@ formLib
             authenticator(session.conversationData.username, results.response, function (resp) {
                 console.log(resp);
                 if (resp != "Login successful") {
-                    session.say(lang.wrongCredentials);
-                    session.replaceDialog('checkCredentials', { reprompt: true });
-                    session.endDialog;
+                    if (exitCode != 0) {
+                        var errorMessage = utils.format(lang.errorMessage, resp);
+                        session.say(errorMessage);
+                        session.endDialog;
+                    } else {
+                        session.say(lang.wrongCredentials);
+                        session.replaceDialog('checkCredentials', { reprompt: true });
+                        session.endDialog;
+                    }
                 } else {
                     //memorizza password per girarla all'azione di deploy
                     session.conversationData.password = results.response;

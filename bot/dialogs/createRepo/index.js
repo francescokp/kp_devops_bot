@@ -49,14 +49,16 @@ formLib
             posterGit(session.conversationData.framework, session.conversationData.appName, function (exitCode, resp) {
                 console.log(exitCode);
                 console.log(resp);
-                  if (exitCode != 0) {
+                if (exitCode == 1) {
                     var errorMessage = utils.format(lang.errorMessage, resp);
                     session.say(errorMessage);
-                  } else {
-                      var endMessage = utils.format(lang.endMessage, resp);
-                      session.say(endMessage);
-                  }
-                })
+                } else if (exitCode == 2) {
+                    session.say(lang.genericErrorMessage);
+                } else {
+                    var endMessage = utils.format(lang.endMessage, resp);
+                    session.say(endMessage);
+                }
+            })
         }]
     )
     .endConversationAction(

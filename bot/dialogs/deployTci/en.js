@@ -29,6 +29,7 @@ var lang_en = {
     confirmUser: "Your username is %s",
     insertPassword: "Please insert your Active Directory password",
     wrongCredentials: "Your credentials seem to be invalid",
+    errorMessage: "Oooops... something went wrong. Please don't panic and contact the support before retrying. Error code:\"*%s*\"",
     loginConfirm: "Login successful",
     loginBypass: "You are currently logged in as %s",
     keepLogin: "Is this the correct user?",
@@ -36,7 +37,6 @@ var lang_en = {
     startDeployProd: "Are you sure you want to deploy *%s*, version %s, in %s environment and %s sandbox?",
     cancelDeploy: "The deploy was cancelled",
     confirmDeploy: "The deploy was started. \n\n ..Please wait a few seconds..",
-    deployErrorMessage: "Oooops... something went wrong. Please don't panic and contact the support before retrying. Error code: %s",
     endMessage: "Deploy for app %s has been successfully started in %s environment, %s sandbox. Please check your application logs.",
     yesNo: ["YES", "NO"]
 };

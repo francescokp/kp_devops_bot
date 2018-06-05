@@ -29,7 +29,7 @@ var lang_en = {
     startDeployProd: "Are you sure you want to deploy *%s*, version %s, in %s environment?",
     cancelDeploy: "The deploy was cancelled",
     confirmDeploy: "The deploy was started. \n\n ..Please wait a few seconds..",
-    deployErrorMessage: "Oooops... something went wrong. Please don't panic and contact the support before retrying. Error code: %s",
+    errorMessage: "Oooops... something went wrong. Please don't panic and contact the support before retrying. Error code: \"*%s*\"",
     endMessage: "Deploy for app %s has been successfully started in %s environment. Please check your application logs.",
     yesNo: ["YES", "NO"]
 };

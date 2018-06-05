@@ -44,7 +44,9 @@ function prepareTciRequest(username, password, env, sandbox, appName, appVersion
         if (!error && response.statusCode == 201) {
             res = "started";
         }
-        else {
+        else if (error) {
+            res = error;
+        } else {
             res = response.statusCode;
         }
         callback(res);

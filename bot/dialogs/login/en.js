@@ -7,7 +7,8 @@ var lang_en ={
     insertPassword: "Please insert your Active Directory password",
     wrongCredentials: "Your credentials seem to be invalid",
     loginConfirm: "Login successful. Type 'help' for a list of possible actions",
-    logoutConfirm: "User logged out."
+    logoutConfirm: "User logged out.",
+    errorMessage: "Oooops... something went wrong. Please don't panic and contact the support before retrying. Error code:\"*%s*\""
 };
 
 module.exports = lang_en;

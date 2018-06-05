@@ -15,6 +15,7 @@ var lang_en = {
     confirmApp: "Are you sure the exact name of the App is \"*%s*\"? The repo will be created as: \"TIBCO_%s_%s\"",
     endMessage: "The repository has been created. URL: %s",
     errorMessage: "The repository has NOT been created. Error: %s",
+    genericErrorMessage: "The repository has NOT been created. Please don't panic and contact the support before retrying.",
     yesNo: ["YES", "NO"]
 };
 

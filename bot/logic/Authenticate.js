@@ -21,11 +21,16 @@ function loginRequest(username, password, callback) {
     getRequest(options, function (error, response, body) {
         if (!error && response.statusCode == 200) {
             res = body;
+            exitCode = 0;
         }
-        else {
+        else if (error) {
+            res = error;
+            exitCode = 1;
+        } else {
             res = response.statusCode;
+            exitCode = 1;
         }
-        callback(res);
+        callback(res, exitCode);
     });
 }
 

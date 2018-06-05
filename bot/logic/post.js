@@ -43,7 +43,9 @@ function prepareRequest(username, password, env, appName, appVersion, callback) 
         if (!error && response.statusCode == 201) {
             res = "started";
         }
-        else {
+        else if (error) {
+            res = error;
+        } else {
             res = response.statusCode;
         }
         callback(res);

@@ -27,9 +27,15 @@ loginDialog
             authenticator(session.conversationData.username, results.response, function(resp) {
                 console.log(resp);
                 if (resp != "Login successful") {
-                    session.say(lang.wrongCredentials);
-                    session.replaceDialog('checkCredentials', { reprompt: true });
-                    session.endDialog;
+                    if (exitCode != 0) {
+                        var errorMessage = utils.format(lang.errorMessage, resp);
+                        session.say(errorMessage);
+                        session.endDialog;
+                    } else {
+                        session.say(lang.wrongCredentials);
+                        session.replaceDialog('checkCredentials', { reprompt: true });
+                        session.endDialog;
+                    }
                 } else {
                     //memorizza password per girarla all'azione di deploy
                     session.conversationData.password = results.response;
