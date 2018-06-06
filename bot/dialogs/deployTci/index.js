@@ -6,6 +6,7 @@ var botbuilder = require("botbuilder");
 var utils = require("util");
 var lang = require("./en");
 var posterTci = require("../../logic/postTci");
+var tGetter = require("../../logic/getTopicListGit");
 var getter = require("../../logic/getAppListGit");
 var authenticator = require("../../logic/authenticate")
 var formLib = new botbuilder.Library("deployTci");
@@ -16,12 +17,31 @@ formLib
     .dialog("deployTci", [
         function (session) {
             //attendere prego
-            session.say(lang.gitWait);
-            //scarica elenco App da GitHub
-            getter(framework, function (exitCode, resp) {
+            session.say(lang.gitTopicWait);
+            //scarica elenco topic da GitHub
+            tGetter(framework, function (exitCode, resp) {
                 if (exitCode == 0) {
-                    var appList = resp;
-                    botbuilder.Prompts.choice(session, lang.welcome.intro, appList, {
+                    botbuilder.Prompts.choice(session, lang.chooseTopic.intro, resp, {
+                        listStyle: botbuilder.ListStyle.button,
+                        retryPrompt: lang.chooseTopic.retry
+                    });
+                } else {
+                    var gitErrorMessage = utils.format(lang.errorMessage, resp);
+                    session.say(gitErrorMessage);
+                    session.endConversation;
+                }
+            });
+        },
+        function (session, results) {
+            //memorizza topic per filtrare successiva chiamata
+            var chosenTopic = results.response.entity;
+            //attendere prego
+            var gitWait = utils.format(lang.gitWait, chosenTopic);
+            session.say(gitWait);
+            //scarica elenco App da GitHub
+            getter(framework, chosenTopic, function (exitCode, resp) {
+                if (exitCode == 0) {
+                    botbuilder.Prompts.choice(session, lang.welcome.intro, resp, {
                         listStyle: botbuilder.ListStyle.button,
                         retryPrompt: lang.welcome.retry
                     });

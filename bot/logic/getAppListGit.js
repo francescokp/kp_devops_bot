@@ -5,7 +5,7 @@ var regex = "";
 //debug only
 //listReposRequest("BW6", function (exitCode, resp) { });
 
-function listReposRequest(framework, callback) {
+function listReposRequest(framework, topic, callback) {
 
     // TODO: sostituire il token con quello attivo, solo se si committa questo codice su un repo privato
     // Workaround: se si vuole aggirare il problema basta spezzare il token. In questo modo comunque si rende il token visibile a internet.
@@ -24,12 +24,12 @@ function listReposRequest(framework, callback) {
 
     // Set the headers
     var options = {
-        uri: 'https://api.github.com/orgs/DavideCampariMilano/repos',
+        uri: 'https://api.github.com/search/repositories?per_page=100&q=org:DavideCampariMilano+topic:' + topic,
         method: 'GET',
         headers: {
             'Content-Type': 'application/json',
             'User-Agent': 'kp_devops_bot',
-            'Authorization': 'token ' + gitHubToken1 + gitHubToken2
+            'Authorization': 'token ' + gitHubToken1 + gitHubToken2,
         }
     };
 
@@ -58,7 +58,7 @@ function listReposRequest(framework, callback) {
         } else {
             console.log(body);
             exitCode = 2;
-        }
+        };
         callback(exitCode, res);
     });
 }

@@ -4,7 +4,12 @@ Object.defineProperty(exports, "__esModule", {
 });
 
 var lang_en = {
-    gitWait: "I'm checking on GitHub for a list of deployable TCI applications. Please wait a few seconds...",
+    gitTopicWait: "I'm checking on GitHub for a list of existing topics. Please wait.",
+    chooseTopic: {
+        intro: "These are the available topics",
+        retry: "Sorry I didn’t understand. Please choose a topic from the list"
+    },
+    gitWait: "Now I'm checking on GitHub for a list of deployable TCI applications that match your topic *%s*. Be patient.",
     welcome: {
         intro: "These are the available TCI applications that can be deployed",
         //apps: ["AccountingDocument", "CommonUtils", "DeployTest", "EmployeeCentral", "JournalEntries", "LogProvider", "LogisticsOperators", "Material", "PickList", "Proxy", "PurchaseOrder", "ServiceNow", "Vendor"],
