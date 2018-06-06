@@ -226,7 +226,7 @@ formLib
     .endConversationAction(
         "annullaDeploy", "OK BYE NOW.",
         {
-            matches: /^cancel.*$|^annull.*$/i,
+            matches: /^cancel.*$|^annull.*|^sbagl.*$/i,
             confirmPrompt: "This will cancel the deploy. Are you sure?"
         });
 
