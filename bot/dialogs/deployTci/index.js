@@ -6,17 +6,25 @@ var botbuilder = require("botbuilder");
 var utils = require("util");
 var lang = require("./en");
 var posterTci = require("../../logic/postTci");
+var getter = require("../../logic/getAppListGit");
 var authenticator = require("../../logic/authenticate")
 var formLib = new botbuilder.Library("deployTci");
+
+var framework = "TCI";
 
 formLib
     .dialog("deployTci", [
         function (session) {
-            //presenta la lista delle App
-            botbuilder.Prompts.choice(session, lang.welcome.intro, lang.welcome.apps, {
-                listStyle: botbuilder.ListStyle.button,
-                retryPrompt: lang.welcome.retry
-            })
+            //attendere prego
+            session.say(lang.gitWait);
+            //scarica elenco App da GitHub
+            getter(framework, function (exitCode, resp) {
+                session.conversationData.appList = resp;
+                botbuilder.Prompts.choice(session, lang.welcome.intro, session.conversationData.appList, {
+                    listStyle: botbuilder.ListStyle.button,
+                    retryPrompt: lang.welcome.retry
+                });
+            });
         },
         function (session, results) {
             //memorizza appName per girarlo all'azione di deploy
