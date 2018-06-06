@@ -13,7 +13,7 @@ var lang_en = {
     confirmApp: "Ok. *%s* is the app to deploy",
     chooseEnv: {
         intro: "Which is the target environment?",
-        envs: ["QAS", "PROD"],
+        envs: ["QAS",/* "PROD"*/],
         retry: "Sorry I didn’t understand. Please choose an environment from the list by either entering the number or environment name."
     },
     confirmEnv: "You chose environment %s",
