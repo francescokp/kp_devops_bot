@@ -19,11 +19,17 @@ formLib
             session.say(lang.gitWait);
             //scarica elenco App da GitHub
             getter(framework, function (exitCode, resp) {
-                session.conversationData.appList = resp;
-                botbuilder.Prompts.choice(session, lang.welcome.intro, session.conversationData.appList, {
-                    listStyle: botbuilder.ListStyle.button,
-                    retryPrompt: lang.welcome.retry
-                });
+                if (exitCode == 0) {
+                    var appList = resp;
+                    botbuilder.Prompts.choice(session, lang.welcome.intro, appList, {
+                        listStyle: botbuilder.ListStyle.button,
+                        retryPrompt: lang.welcome.retry
+                    });
+                } else {
+                    var gitErrorMessage = utils.format(lang.errorMessage, resp);
+                    session.say(gitErrorMessage);
+                    session.endConversation;
+                }
             });
         },
         function(session, results) {

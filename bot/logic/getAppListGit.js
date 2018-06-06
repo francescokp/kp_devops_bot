@@ -1,7 +1,6 @@
 var postRequest = require('request');
 
 var regex = "";
-var matches_array = [];
 
 //debug only
 //listReposRequest("BW6", function (exitCode, resp) { });
@@ -35,9 +34,10 @@ function listReposRequest(framework, callback) {
     };
 
     var res = '';
+    var matches_array = [];
     postRequest(options, function (error, response, body) {
         if (!error && response.statusCode == 200) {
-            //esegue la regex
+            //esegue la regex sul body della response
             var match = regex.exec(body);
             // cicla sui risultati memorizzandoli in un array
             while (match != null) {
@@ -47,6 +47,7 @@ function listReposRequest(framework, callback) {
                 matches_array.push(match[1]);
                 match = regex.exec(body);
             }
+            matches_array.sort();
             res = matches_array;
             exitCode = 0;
         }

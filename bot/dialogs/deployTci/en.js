@@ -7,7 +7,7 @@ var lang_en = {
     gitWait: "I'm checking on GitHub for a list of deployable TCI applications. Please wait a few seconds...",
     welcome: {
         intro: "These are the available TCI applications that can be deployed",
-        apps: ["AccountingDocument", "CommonUtils", "DeployTest", "EmployeeCentral", "JournalEntries", "LogProvider", "LogisticsOperators", "Material", "PickList", "Proxy", "PurchaseOrder", "ServiceNow", "Vendor"],
+        //apps: ["AccountingDocument", "CommonUtils", "DeployTest", "EmployeeCentral", "JournalEntries", "LogProvider", "LogisticsOperators", "Material", "PickList", "Proxy", "PurchaseOrder", "ServiceNow", "Vendor"],
         retry: "Sorry I didn’t understand. Please choose an app from the list"
     },
     confirmApp: "Ok. *%s* is the app to deploy",
