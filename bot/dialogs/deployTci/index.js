@@ -8,6 +8,7 @@ var lang = require("./en");
 var posterTci = require("../../logic/postTci");
 var tGetter = require("../../logic/getTopicListGit");
 var getter = require("../../logic/getAppListGit");
+var login = require("../login")
 var authenticator = require("../../logic/authenticate")
 var formLib = new botbuilder.Library("deployTci");
 
@@ -99,7 +100,7 @@ formLib
             session.say(confirmSandbox);
             //inizia il dialogo di check credenziali se non conosce già l'utente
             if (session.userData.username == null) {
-                session.beginDialog("checkCredentials");
+                session.beginDialog("login:checkCredentials");
             } else {
                 //se conosce già l'utente chiede conferma sull'utenza loggata
                 var confirmUser = utils.format(lang.loginBypass, session.userData.username);
@@ -112,7 +113,7 @@ formLib
         function (session, results, next) {
             // se l'utente vuole cambiare utenza parte il dialogo di login
             if (results.response.entity == "NO") {
-                session.beginDialog("checkCredentials");
+                session.beginDialog("login:checkCredentials");
             } else {
                 next();
             }
@@ -154,55 +155,6 @@ formLib
 
         }]
     )
-    .endConversationAction(
-        "annullaDeploy", "OK BYE NOW.",
-        {
-            matches: /^cancel.*$|^annull.*$/i,
-            confirmPrompt: "This will cancel the deploy. Are you sure?"
-        });
-
-formLib
-    .dialog("checkCredentials", [
-        function (session) {
-            //richiede il nomeUtente Active Directory
-            botbuilder.Prompts.text(session, lang.insertUsername);
-        },
-        function (session, results) {
-            //memorizza username per girarlo all'azione di deploy
-            session.conversationData.username = results.response;
-            //messaggio di conferma username
-            var confirmUser = utils.format(lang.confirmUser, session.conversationData.username);
-            session.say(confirmUser);
-            //richiede la password ActiveDirectory
-            botbuilder.Prompts.text(session, lang.insertPassword);
-        },
-        function (session, results) {
-
-            authenticator(session.conversationData.username, results.response, function (resp) {
-                console.log(resp);
-                if (resp != "Login successful") {
-                    if (exitCode != 0) {
-                        var errorMessage = utils.format(lang.errorMessage, resp);
-                        session.say(errorMessage);
-                        session.endDialog;
-                    } else {
-                        session.say(lang.wrongCredentials);
-                        session.replaceDialog('checkCredentials', { reprompt: true });
-                        session.endDialog;
-                    }
-                } else {
-                    //memorizza password per girarla all'azione di deploy
-                    session.conversationData.password = results.response;
-                    //memorizza nome e pwd dell'utente in sessione
-                    session.userData.username = session.conversationData.username;
-                    session.userData.password = session.conversationData.password;
-                    //conferma login
-                    session.say(lang.loginConfirm);
-                    //torna al dialogo padre
-                    session.endDialogWithResult(results);
-                }
-            });
-        }])
     .endConversationAction(
         "annullaDeploy", "OK BYE NOW.",
         {

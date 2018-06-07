@@ -17,11 +17,6 @@ var lang_en = {
     endMessage: "The repository has been created. URL: %s",
     errorMessage: "The repository has NOT been created. Error: %s",
     genericErrorMessage: "The repository has NOT been created. Please don't panic and contact the support before retrying.",
-    insertUsername: "Please insert your Active Directory username",
-    confirmUser: "Your username is %s",
-    insertPassword: "Please insert your Active Directory password",
-    wrongCredentials: "Your credentials seem to be invalid",
-    loginConfirm: "Login successful",
     loginBypass: "You are currently logged in as %s",
     keepLogin: "Is this the correct user?",
     yesNo: ["YES", "NO"]

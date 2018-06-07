@@ -9,7 +9,7 @@ var lang_en = {
         intro: "These are the available topics",
         retry: "Sorry I didn’t understand. Please choose a topic from the list"
     },
-    gitWait: "Now I'm checking on GitHub for a list of deployable TCI applications that match your topic *%s*. Be patient.",
+    gitWait: "Now I'm checking on GitHub for a list of deployable BW6 applications that match your topic *%s*. Be patient.",
     welcome: {
         intro: "These are the available BW6 applications that can be deployed",
         //apps: ["AccountingDocument", "Bank", "BillOfMaterial", "CommonSAPListener", "CommonSAPResources", "CommonWMSResources", "Conai", "Customer", "Delivery", "DeployTest", "GoodsMovement", "GoodsReceipt", "InternalOrders", "Invoice", "LiquidMovement", "LogisticsOperators", "Material", "MaterialClassification", "MyNewFantasticApp", "Order", "PickList", "ProductionOrder", "PurchaseOrder", "SAPListener", "SalesOrder", "SignatureManager", "Stocks", "Vendor"],
@@ -23,11 +23,6 @@ var lang_en = {
     },
     confirmEnv: "You chose environment %s",
     insertVersion: "Please specify which version of the app you want to deploy",
-    insertUsername: "Please insert your Active Directory username",
-    confirmUser: "Your username is %s",
-    insertPassword: "Please insert your Active Directory password",
-    wrongCredentials: "Your credentials seem to be invalid",
-    loginConfirm: "Login successful",
     loginBypass: "You are currently logged in as %s",
     keepLogin: "Is this the correct user?",
     startDeploy: "Are you sure you want to deploy *%s* in %s environment?",

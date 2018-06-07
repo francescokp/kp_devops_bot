@@ -27,13 +27,15 @@ loginDialog
             authenticator(session.conversationData.username, results.response, function(resp) {
                 console.log(resp);
                 if (resp != "Login successful") {
-                    if (exitCode != 0) {
-                        var errorMessage = utils.format(lang.errorMessage, resp);
-                        session.say(errorMessage);
-                        session.endDialog;
-                    } else {
+                    //credenziali errate
+                    if (exitCode == 1) {
                         session.say(lang.wrongCredentials);
                         session.replaceDialog('checkCredentials', { reprompt: true });
+                        session.endDialog;
+                    } else //errore generico
+                    {
+                        var errorMessage = utils.format(lang.errorMessage, resp);
+                        session.say(errorMessage);
                         session.endDialog;
                     }
                 } else {

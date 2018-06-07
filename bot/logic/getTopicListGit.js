@@ -48,7 +48,6 @@ function listTopicsRequest(framework, callback) {
                 var topicMatch = regex2.exec(topicBlock[1]);
                 //cicla sui topic estratti
                 while (topicMatch != null) {
-                    console.log(topicMatch[1]);
                     topic_matches_array.push(topicMatch[1]);
                     var topicMatch = regex2.exec(topicBlock[1]);
                 }

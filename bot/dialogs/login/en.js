@@ -6,7 +6,7 @@ var lang_en ={
     confirmUser: "Your username is %s",
     insertPassword: "Please insert your Active Directory password",
     wrongCredentials: "Your credentials seem to be invalid",
-    loginConfirm: "Login successful. Type 'help' for a list of possible actions",
+    loginConfirm: "Login successful.",
     logoutConfirm: "User logged out.",
     errorMessage: "Oooops... something went wrong. Please don't panic and contact the support before retrying. Error code:\"*%s*\""
 };

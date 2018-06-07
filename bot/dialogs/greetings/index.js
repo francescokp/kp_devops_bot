@@ -12,6 +12,7 @@ var greetingsLib = new botbuilder.Library("greetings");
 
 greetingsLib
     .dialog("hello", session => {
+        console.log(session.message.user);
         if (session.userData.username != null) {
             var welcomeBack = utils.format(lang.welcomeBack, session.userData.username);
             session.endDialog(welcomeBack);

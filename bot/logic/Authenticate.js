@@ -17,19 +17,19 @@ function loginRequest(username, password, callback) {
     };
 
     var res = '';
-    console.log(options.uri);
+
     getRequest(options, function (error, response, body) {
+        //login successful
         if (!error && response.statusCode == 200) {
             res = body;
             exitCode = 0;
-        }
-        else if (error) {
-            res = error;
+        } else if (!error && response.statusCode == 500) {
+            res = body;
             exitCode = 1;
         } else {
-            res = response.statusCode;
+            res = error;
             exitCode = 1;
-        }
+        } 
         callback(res, exitCode);
     });
 }
