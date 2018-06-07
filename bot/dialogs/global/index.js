@@ -17,17 +17,23 @@ var menuActions = {
     "Create GitHub Repository": {
         item: "createRepo:createRepo"
     },
+    "Active Directory Login / Change User": {
+        item: "login:checkCredentials"
+    },
+    "Active Directory Logout": {
+        item: "login:logout"
+    },
 }
 
 globalDialog
-    .dialog("help", [
-    //session.endDialog(lang.help.message);
+    .dialog("menu", [
+    //session.endDialog(lang.menu.message);
 
     function (session) {
-        //botbuilder.Prompts.text(session, lang.help.intro);
-        botbuilder.Prompts.choice(session, lang.help.intro, menuActions, {
+        //botbuilder.Prompts.text(session, lang.menu.intro);
+        botbuilder.Prompts.choice(session, lang.menu.intro, menuActions, {
             listStyle: botbuilder.ListStyle.button,
-            retryPrompt: lang.help.retry
+            retryPrompt: lang.menu.retry
         })
 
     },
@@ -39,7 +45,7 @@ globalDialog
     }
     ])
     .triggerAction({
-    matches: /^.*help.*$/i
+    matches: /^menu|help$/i
 });
 
 module.exports = globalDialog;

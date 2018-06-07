@@ -51,9 +51,6 @@ loginDialog
                 }
             });
         }])
-    .triggerAction({
-        matches: /^login$/i
-    })
     .endConversationAction(
         "annullaLogin", "Login cancelled",
         {
@@ -63,14 +60,17 @@ loginDialog
     );
 
 loginDialog
-    .dialog("logout", function(session) {
-        //sbianca nome e pwd dell'utente
-        session.userData.username = null;
-        session.userData.password = null;
-        session.say(lang.logoutConfirm);
-    })
-    .triggerAction({
-        matches: /^logout$/i
+    .dialog("logout", function (session) {
+        if (session.userData.username == null && session.userData.password == null) {
+            session.say(lang.alreadyLoggedOut);
+        } else {
+            var tmp = session.userData.username
+            //sbianca nome e pwd dell'utente
+            session.userData.username = null;
+            session.userData.password = null;
+            var logoutConfirm = utils.format(lang.logoutConfirm, tmp);       
+            session.say(logoutConfirm);
+        }
     });
 
 module.exports = loginDialog;
