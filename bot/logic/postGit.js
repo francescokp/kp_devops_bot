@@ -1,11 +1,16 @@
 var postRequest = require('request');
 
-function createRepoRequest(framework, appName, callback) {
+function createRepoRequest(framework, appName, repoDesc, callback) {
 
     // TODO: sostituire il token con quello attivo, solo se si committa questo codice su un repo privato
     // Workaround: se si vuole aggirare il problema basta spezzare il token. In questo modo comunque si rende il token visibile a internet.
     var gitHubToken1 = "f86b5d20699044f324ee";
     var gitHubToken2 = "5e5e710c337da2f6edcd";
+
+    //gestisce lo skip della descrizione
+    if (repoDesc.toUpperCase() == "SKIP") {
+        repoDesc = "";
+    }
 
     // Set the headers
     var options = {
@@ -18,6 +23,7 @@ function createRepoRequest(framework, appName, callback) {
         },
         json: {
             "name": "TIBCO_" + framework + "_" + appName,
+            "description": repoDesc,
             "private": true,
             "auto_init": true
         }

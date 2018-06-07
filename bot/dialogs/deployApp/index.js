@@ -79,7 +79,7 @@ formLib
             if (session.userData.username == null) {
                 session.beginDialog("checkCredentials");
             } else {
-                //se connosce già l'utente chiede conferma sull'utenza loggata
+                //se conosce già l'utente chiede conferma sull'utenza loggata
                 var confirmUser = utils.format(lang.loginBypass, session.userData.username);
                 session.say(confirmUser);
                 botbuilder.Prompts.choice(session, lang.keepLogin, lang.yesNo, {
