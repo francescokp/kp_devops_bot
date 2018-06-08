@@ -7,10 +7,10 @@
     "\\bot\\dialogs\\default",
     "\\bot\\dialogs\\deployApp",
     "\\bot\\dialogs\\deployTci",
+    "\\bot\\dialogs\\formTest",
     "\\bot\\dialogs\\global",
-    "\\bot\\dialogs\\greetings",
-    "\\bot\\logic"
+    "\\bot\\dialogs\\login"
   ],
-  "SelectedNode": "\\bot\\dialogs\\deployTci\\en.js",
+  "SelectedNode": "\\bot\\dialogs\\global\\index.js",
   "PreviewInSolutionExplorer": false
 }

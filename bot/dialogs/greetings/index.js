@@ -15,10 +15,11 @@ greetingsLib
         if (session.message.user.name != null) {
             var welcomeBack = utils.format(lang.welcomeBack, session.message.user.name);
             session.endDialog(welcomeBack);
+            session.userData.firstRun = false;
         } else {
-            session.endDialog(lang.firstRun);
+            session.endDialog(lang.unidentified);
+            session.userData.firstRun = false;
         }
-
     })
     .triggerAction({
         matches: /^hello.*|^hi.*|^ciao.*/i

@@ -35,7 +35,6 @@ globalDialog
             listStyle: botbuilder.ListStyle.button,
             retryPrompt: lang.menu.retry
         })
-
     },
 
     function (session, results) {
@@ -46,6 +45,11 @@ globalDialog
     ])
     .triggerAction({
     matches: /^menu|help$/i
-});
+    })
+    .endConversationAction(
+        "annullaDeploy", "OK BYE NOW.",
+        {
+            matches: /^cancel.*$|^annull.*|^sbagl.*$/i,
+        });;
 
 module.exports = globalDialog;

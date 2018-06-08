@@ -28,6 +28,7 @@ const connector = new builder.ChatConnector({
 
 // Create your bot with a function to receive messages from the user and set a default dialog
 var bot = new builder.UniversalBot(connector, defaultDialog);
+
 // bot.set('storage', storage);
 
 //Add Dialogs
