@@ -21,7 +21,7 @@ greetingsLib
         }
     })
     .triggerAction({
-        matches: /^hello.*|^hi.*|^ciao.*/i
+        matches: /^hello.*|^hi.*|^ciao.*|^\/start$/i
     });
 
 module.exports = greetingsLib;
