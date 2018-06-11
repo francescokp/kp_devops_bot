@@ -23,7 +23,8 @@ loginDialog
             //richiede la password ActiveDirectory
             botbuilder.Prompts.text(session, lang.insertPassword);
         },
-        function(session, results) {
+        function (session, results) {
+            session.sendTyping();
             authenticator(session.conversationData.username, results.response, function(resp) {
                 console.log(resp);
                 if (resp != "Login successful") {

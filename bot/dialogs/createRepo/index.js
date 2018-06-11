@@ -73,6 +73,7 @@ formLib
             }
         },
         function (session, results) {
+            session.sendTyping();
             //chiamata POST: framework e appName presi dall'input del bot
             posterGit(session.conversationData.framework, session.conversationData.appName, session.conversationData.repoDescription, function (exitCode, resp) {
                 console.log(exitCode);

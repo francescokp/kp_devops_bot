@@ -19,6 +19,7 @@ formLib
         function (session) {
             //attendere prego
             session.say(lang.gitTopicWait);
+            session.sendTyping();
             //scarica elenco topic da GitHub
             tGetter(framework, function (exitCode, resp) {
                 if (exitCode == 0) {
@@ -40,6 +41,7 @@ formLib
             //attendere prego
             var gitWait = utils.format(lang.gitWait, chosenTopic);
             session.say(gitWait);
+            session.sendTyping();
             //scarica elenco App da GitHub
             getter(framework, chosenTopic, function (exitCode, resp) {
                 if (exitCode == 0) {
