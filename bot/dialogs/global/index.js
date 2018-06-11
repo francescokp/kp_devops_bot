@@ -50,6 +50,7 @@ globalDialog
         "annullaDeploy", "OK BYE NOW.",
         {
             matches: /^cancel.*$|^annull.*|^sbagl.*$/i,
-        });;
+    });
+;
 
 module.exports = globalDialog;

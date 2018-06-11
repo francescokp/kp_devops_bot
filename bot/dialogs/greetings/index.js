@@ -5,7 +5,6 @@ Object.defineProperty(exports, "__esModule", {
 });
 
 var botbuilder = require("botbuilder");
-var userData = require("../../shared/userData");
 var utils = require("util");
 var lang = require("./en");
 var greetingsLib = new botbuilder.Library("greetings");
@@ -15,10 +14,10 @@ greetingsLib
         if (session.message.user.name != null) {
             var welcomeBack = utils.format(lang.welcomeBack, session.message.user.name);
             session.endDialog(welcomeBack);
-            session.userData.firstRun = false;
+            session.conversationData.firstRun = false;
         } else {
             session.endDialog(lang.unidentified);
-            session.userData.firstRun = false;
+            session.conversationData.firstRun = false;
         }
     })
     .triggerAction({

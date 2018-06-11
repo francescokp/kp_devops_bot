@@ -40,4 +40,26 @@ bot.library(deployTci.clone());
 bot.library(loginDialog.clone());
 bot.library(createRepo.clone());
 
+bot.on('conversationUpdate', function (message) {
+    if (message.membersAdded) {
+        message.membersAdded.forEach(function (identity) {
+            if (identity.id === message.address.bot.id) {
+                bot.beginDialog(message.address, "greetings:hello");
+            }
+        });
+    }
+}); 
+
+/* bot.on('conversationUpdate', function (message) {
+    if (message.membersAdded) {
+        message.membersAdded.forEach(function (identity) {
+            if (identity.id === message.address.bot.id) {
+                bot.send(new builder.Message()
+                    .address(message.address)
+                    .text("Hello!  I'm a bot."));
+            }
+        });
+    }
+}); */
+
 module.exports = connector;

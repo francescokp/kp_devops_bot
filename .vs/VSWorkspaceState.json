@@ -9,8 +9,8 @@
     "\\bot\\dialogs\\deployTci",
     "\\bot\\dialogs\\formTest",
     "\\bot\\dialogs\\global",
-    "\\bot\\dialogs\\login"
+    "\\bot\\dialogs\\greetings"
   ],
-  "SelectedNode": "\\bot\\dialogs\\global\\index.js",
+  "SelectedNode": "\\app.js",
   "PreviewInSolutionExplorer": false
 }
