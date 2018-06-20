@@ -5,7 +5,10 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var botbuilder = require("botbuilder");
 var utils = require("util");
 var lang = require("./en");
-var posterTci = require("../../logic/postTci");
+//proxied
+//var posterTci = require("../../logic/postTci");
+var posterTci = require("../../logic/proxiedPostTci");
+//
 var tGetter = require("../../logic/getTopicListGit");
 var getter = require("../../logic/getAppListGit");
 var login = require("../login")
@@ -137,6 +140,7 @@ formLib
         function (session, results) {
             if (results.response.entity == "YES") {
                 session.say(lang.confirmDeploy);
+                session.sendTyping();
                 //chiamata POST: dati utente, env app e sandbox presi dall'input del bot
                 posterTci(session.userData.username, session.userData.password, session.conversationData.envName, session.conversationData.sandboxName, session.conversationData.appToDeploy, session.conversationData.appVersion, function (resp) {
                     console.log(resp);
@@ -180,7 +184,7 @@ formLib
     .endConversationAction(
         "annullaDeploy", "OK BYE NOW.",
         {
-            matches: /^cancel.*$|^annull.*|^sbagl.*$/i,
+            matches: /^cancel.*$|^annull.*|^.*sbagl.*$/i,
             confirmPrompt: "This will cancel the deploy. Are you sure?"
         });
 

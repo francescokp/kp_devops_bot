@@ -23,15 +23,28 @@ function listReposRequest(framework, topic, callback) {
     }
 
     // Set the headers
-    var options = {
-        uri: 'https://api.github.com/search/repositories?per_page=100&q=org:DavideCampariMilano+topic:' + topic,
-        method: 'GET',
-        headers: {
-            'Content-Type': 'application/json',
-            'User-Agent': 'kp_devops_bot',
-            'Authorization': 'token ' + gitHubToken1 + gitHubToken2,
-        }
-    };
+    if (topic != null) {
+        var options = {
+            uri: 'https://api.github.com/search/repositories?per_page=100&q=org:DavideCampariMilano+topic:' + topic,
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+                'User-Agent': 'kp_devops_bot',
+                'Authorization': 'token ' + gitHubToken1 + gitHubToken2,
+            }
+        };
+    } else {
+        var options = {
+            uri: 'https://api.github.com/search/repositories?per_page=100&q=org:DavideCampariMilano',
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+                'User-Agent': 'kp_devops_bot',
+                'Authorization': 'token ' + gitHubToken1 + gitHubToken2,
+            }
+        };
+    }
+
 
     var res = '';
     var matches_array = [];

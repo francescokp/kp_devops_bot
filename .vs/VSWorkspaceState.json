@@ -3,13 +3,13 @@
     "",
     "\\bot",
     "\\bot\\dialogs",
+    "\\bot\\dialogs\\Cli",
     "\\bot\\dialogs\\createRepo",
     "\\bot\\dialogs\\default",
     "\\bot\\dialogs\\deployApp",
     "\\bot\\dialogs\\deployTci",
-    "\\bot\\dialogs\\formTest",
-    "\\bot\\dialogs\\global",
-    "\\bot\\dialogs\\greetings"
+    "\\bot\\dialogs\\greetings",
+    "\\bot\\logic"
   ],
   "SelectedNode": "\\app.js",
   "PreviewInSolutionExplorer": false

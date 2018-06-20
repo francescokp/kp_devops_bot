@@ -36,7 +36,7 @@ var lang_en = {
     startDeploy: "Are you sure you want to deploy *%s* in %s environment and %s sandbox?",
     startDeployProd: "Are you sure you want to deploy *%s*, version %s, in %s environment and %s sandbox?",
     cancelDeploy: "The deploy was cancelled",
-    confirmDeploy: "The deploy was started. \n\n ..Please wait a few seconds..",
+    confirmDeploy: "The deploy is being started. \n\n ..Please wait a few seconds..",
     endMessage: "Deploy for app %s has been successfully started in %s environment, %s sandbox. Please check your application logs.",
     yesNo: ["YES", "NO"]
 };

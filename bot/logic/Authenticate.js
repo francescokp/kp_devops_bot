@@ -8,7 +8,7 @@ function loginRequest(username, password, callback) {
     var sender = "kp_devops_bot";
     var randomId = Math.random().toString(36).substring(7);
     var options = {
-        uri: 'https://eu-west-1.integration.cloud.tibcoapps.com/j2pwq5djvlle5xdskw4ba3r2chy53byg/checkCredentials/checkcredentials?correlationId=' + randomId + '&sender=' + sender,
+        uri: 'https://eu-west-1.integration.cloud.tibcoapps.com/surzktl7kx3nldap2dc5hixtnjrlddku/checkCredentials/checkcredentials?correlationId=' + randomId + '&sender=' + sender,
         method: 'GET',
         headers: {
             'Authorization': 'Basic ' + authEncoded,
@@ -23,7 +23,7 @@ function loginRequest(username, password, callback) {
         if (!error && response.statusCode == 200) {
             res = body;
             exitCode = 0;
-        } else if (!error && response.statusCode == 500) {
+        } else if (!error && response.statusCode == 500 || !error && response.statusCode == 404) {
             res = body;
             exitCode = 1;
         } else {

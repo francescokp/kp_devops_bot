@@ -20,7 +20,7 @@ function prepareTciRequest(username, password, env, sandbox, appName, appVersion
         // Configure the request (QAS)
         var options = {
             //prototype: http://grltbqm0.appl.campari.priv:8090/job/TIBCO_TCI/job/TEST/job/P_TEST_TCI_BUILD_DEPLOY/buildWithParameters
-            url: 'http://grltbqm0.appl.campari.priv:8090/job/TIBCO_' + framework + '/job/' + env + '/job/P_TEST_' + framework + '_BUILD_DEPLOY/buildWithParameters',
+            url: 'http://grltbqm0.appl.campari.priv:8090/job/TIBCO_' + framework + '/job/' + env + '/job/P_' + env + '_' + framework + '_BUILD_DEPLOY/buildWithParameters',
             method: 'POST',
             headers: headers,
             form: { 'ApplicationName': appName, 'SANDBOX': sandbox }
@@ -29,8 +29,8 @@ function prepareTciRequest(username, password, env, sandbox, appName, appVersion
     else {
         // Configure the request (PROD)
         var options = {
-            //prototype: http://grltbqm0.appl.campari.priv:8090/job/TIBCO_BW6/job/TEST/job/P_TEST_BW6_BUILD_DEPLOY/buildWithParameters
-            url: 'http://grltbqm0.appl.campari.priv:8090/job/TIBCO_' + framework + '/job/' + env + '/job/P_TEST_' + framework + '_BUILD_DEPLOY/buildWithParameters',
+            //prototype: http://grltbqm0.appl.campari.priv:8090/job/TIBCO_TCI/job/PROD/job/P_PROD_TCI_BUILD_DEPLOY/buildWithParameters
+            url: 'http://grltbqm0.appl.campari.priv:8090/job/TIBCO_' + framework + '/job/' + env + '/job/P_' + env + '_' + framework + '_BUILD_DEPLOY/buildWithParameters',
             method: 'POST',
             headers: headers,
             form: { 'ApplicationName': appName, 'Version': appVersion, 'SANDBOX': sandbox }
@@ -47,7 +47,7 @@ function prepareTciRequest(username, password, env, sandbox, appName, appVersion
         else if (error) {
             res = error;
         } else {
-            res = response.statusCode;
+            res = response.statusMessage;
         }
         callback(res);
     });

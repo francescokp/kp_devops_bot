@@ -15,6 +15,7 @@ var testForm = require("./dialogs/formTest");
 var deployApp = require("./dialogs/deployApp");
 var deployTci = require("./dialogs/deployTci");
 var createRepo = require("./dialogs/createRepo");
+var cli = require("./dialogs/Cli");
 
 
 console.log('settings -> ' + JSON.stringify(settings));
@@ -39,6 +40,7 @@ bot.library(deployApp.clone());
 bot.library(deployTci.clone());
 bot.library(loginDialog.clone());
 bot.library(createRepo.clone());
+bot.library(cli.clone());
 
 bot.on('conversationUpdate', function (message) {
     if (message.membersAdded) {
