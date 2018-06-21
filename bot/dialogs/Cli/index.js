@@ -152,7 +152,7 @@ formLib
     .endConversationAction(
     "exitCli", "CLI session terminated",
     {
-        matches: /^exit$/
+        matches: /^exit|Exit$/
     });
 
 formLib
@@ -162,7 +162,7 @@ formLib
             session.beginDialog("Cli");
         }])
     .triggerAction({
-        matches: /^commands$/
+        matches: /^commands|Commands$/
     })
 
 module.exports = formLib;
