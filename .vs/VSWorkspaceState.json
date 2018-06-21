@@ -11,6 +11,6 @@
     "\\bot\\dialogs\\greetings",
     "\\bot\\logic"
   ],
-  "SelectedNode": "\\app.js",
+  "SelectedNode": "\\bot\\logic\\proxiedPostTci.js",
   "PreviewInSolutionExplorer": false
 }
