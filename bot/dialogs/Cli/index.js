@@ -31,6 +31,17 @@ var deployRegexProdTCI = /^deploy\s(TCI)\s(\S*)\s(QAS)\s(ProdPublicSandbox)\s(\d
 //inserire la regexProd
 
 formLib
+    .dialog("Welcome", [
+        function (session) {
+            session.say(lang.cliWelcome);
+            session.beginDialog("Cli");
+        }
+    ])
+    .triggerAction({
+        matches: /^cli$/
+    });
+
+formLib
     .dialog("Cli", [
         function (session) {
             botbuilder.Prompts.text(session, lang.cliReady);
@@ -140,14 +151,13 @@ formLib
                 })
             }
         }])
-    .triggerAction({
-        matches: /^cli$/
-    })
     .endConversationAction(
-    "exitCli", "CLI session terminated",
-    {
-        matches: /^exit|Exit$/
-    });
+        "exitCli", "CLI session terminated",
+        {
+            matches: /^exit|Exit$/
+        }
+    )
+
 
 formLib
     .dialog("commands", [
