@@ -27,19 +27,13 @@ var matchQasBW6, matchQasTCI, matchProdBW6, matchProdTCI = null;
 var deployRegexQasBW6 = /^deploy\s(BW6)\s(\S*)\s(QAS)\s(\d*)\s(\S*)$/;
 var deployRegexQasTCI = /^deploy\s(TCI)\s(\S*)\s(QAS)\s(TestPublicSandbox)\s(\d*)\s(\S*)$/;
 var deployRegexProdBW6 = /^deploy\s(TCI)\s(\S*)\s(QAS)\s(\d\.\d\.\d)\s(\d*)\s(\S*)$/;
-var deployRegexProdTCI = /^deploy\s(TCI)\s(\S*)\s(QAS)\s(ProdPublicSandbox)\s(\d\.\d\.\d)\s(\d*)\s(\S*)$/
+var deployRegexProdTCI = /^deploy\s(TCI)\s(\S*)\s(QAS)\s(ProdPublicSandbox)\s(\d\.\d\.\d)\s(\d*)\s(\S*)$/;
 //inserire la regexProd
 
 formLib
     .dialog("Cli", [
         function (session) {
-            //welcome to the CLI
-            if (first) {
-                botbuilder.Prompts.text(session, lang.cliWelcome);
-                first = false;
-            } else {
-                botbuilder.Prompts.text(session, lang.cliReady);
-            }
+            botbuilder.Prompts.text(session, lang.cliReady);
         },
         function (session, results, next) {
             session.sendTyping();
