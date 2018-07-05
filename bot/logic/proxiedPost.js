@@ -25,7 +25,7 @@ function prepareProxiedRequest(username, password, env, appName, appVersion, cal
         }
         // Configure the request (QAS)
         var options = {
-            url: 'https://eu-west-1.integration.cloud.tibcoapps.com/surzktl7kx3nldap2dc5hixtnjrlddku/proxy/proxy',
+            url: 'https://eu-west-1.integration.cloud.tibcoapps.com/kb3w3k2sbqbsfrccoapymuyyyihuombb/proxy/proxy',
             method: 'POST',
             headers: headers
             //form: { 'ApplicationName': appName/*, 'key2': 'yyy' */ }
@@ -44,7 +44,7 @@ function prepareProxiedRequest(username, password, env, appName, appVersion, cal
         }
         // Configure the request (PROD)
         var options = {
-            url: 'https://eu-west-1.integration.cloud.tibcoapps.com/surzktl7kx3nldap2dc5hixtnjrlddku/proxy/proxy',
+            url: 'https://eu-west-1.integration.cloud.tibcoapps.com/kb3w3k2sbqbsfrccoapymuyyyihuombb/proxy/proxy',
             method: 'POST',
             headers: headers
             //form: { 'ApplicationName': appName, 'Version': appVersion }

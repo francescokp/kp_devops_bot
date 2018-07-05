@@ -25,7 +25,7 @@ function prepareProxiedTciRequest(username, password, env, sandbox, appName, app
         }
         // Configure the request (QAS)
         var options = {
-            url: 'https://eu-west-1.integration.cloud.tibcoapps.com/surzktl7kx3nldap2dc5hixtnjrlddku/proxy',
+            url: 'https://eu-west-1.integration.cloud.tibcoapps.com/kb3w3k2sbqbsfrccoapymuyyyihuombb/proxy',
             method: 'POST',
             headers: headers
             //form: { 'ApplicationName': appName, 'SANDBOX': sandbox }
@@ -44,7 +44,7 @@ function prepareProxiedTciRequest(username, password, env, sandbox, appName, app
         }
         // Configure the request (PROD)
         var options = {
-            url: 'https://eu-west-1.integration.cloud.tibcoapps.com/surzktl7kx3nldap2dc5hixtnjrlddku/proxy',
+            url: 'https://eu-west-1.integration.cloud.tibcoapps.com/kb3w3k2sbqbsfrccoapymuyyyihuombb/proxy',
             method: 'POST',
             headers: headers,
             //form: { 'ApplicationName': appName, 'Version': appVersion, 'SANDBOX': sandbox }
