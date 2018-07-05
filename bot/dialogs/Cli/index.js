@@ -103,6 +103,7 @@ formLib
                         session.say(gitErrorMessage);
                         session.endConversation;
                         session.beginDialog("Cli");
+                    // se l'app inserita nel comando non esiste su Git
                     } else if (resp.indexOf(session.conversationData.appToDeploy) == -1) {
                         var wrongAppMessage = utils.format(lang.wrongAppName, framework, session.conversationData.appToDeploy);
                         session.say(wrongAppMessage);
@@ -120,6 +121,7 @@ formLib
             if (framework == "BW6") {
                 poster(session.userData.username, session.userData.password, session.conversationData.envName, session.conversationData.appToDeploy, session.conversationData.appVersion, function (resp) {
                     console.log(resp);
+                    session.sendTyping();
                     if (resp != "started") {
                         var errorMessage = utils.format(lang.errorMessage, resp);
                         session.say(errorMessage);
@@ -137,6 +139,7 @@ formLib
             else {
                 posterTci(session.userData.username, session.userData.password, session.conversationData.envName, session.conversationData.sandbox, session.conversationData.appToDeploy, session.conversationData.appVersion, function (resp) {
                     console.log(resp);
+                    session.sendTyping();
                     if (resp != "started") {
                         var errorMessage = utils.format(lang.errorMessage, resp);
                         session.say(errorMessage);

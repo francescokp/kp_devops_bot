@@ -8,7 +8,7 @@ function loginRequest(username, password, callback) {
     var sender = "kp_devops_bot";
     var randomId = Math.random().toString(36).substring(7);
     var options = {
-        uri: 'https://eu-west-1.integration.cloud.tibcoapps.com/surzktl7kx3nldap2dc5hixtnjrlddku/checkCredentials/checkcredentials?correlationId=' + randomId + '&sender=' + sender,
+        uri: 'https://eu-west-1.integration.cloud.tibcoapps.com/kb3w3k2sbqbsfrccoapymuyyyihuombb/checkCredentials/checkcredentials?correlationId=' + randomId + '&sender=' + sender,
         method: 'GET',
         headers: {
             'Authorization': 'Basic ' + authEncoded,

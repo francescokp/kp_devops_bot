@@ -11,6 +11,6 @@
     "\\bot\\dialogs\\greetings",
     "\\bot\\logic"
   ],
-  "SelectedNode": "\\bot\\dialogs\\Cli\\en.js",
+  "SelectedNode": "\\bot\\dialogs\\Cli\\index.js",
   "PreviewInSolutionExplorer": false
 }
