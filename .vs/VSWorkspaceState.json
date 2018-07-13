@@ -9,8 +9,8 @@
     "\\bot\\dialogs\\deployApp",
     "\\bot\\dialogs\\deployTci",
     "\\bot\\dialogs\\greetings",
-    "\\bot\\logic"
+    "\\bot\\dialogs\\login"
   ],
-  "SelectedNode": "\\bot\\dialogs\\Cli\\index.js",
+  "SelectedNode": "\\bot\\logic\\proxiedPostTci.js",
   "PreviewInSolutionExplorer": false
 }
